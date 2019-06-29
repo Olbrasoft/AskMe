@@ -11,12 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Altairis.AskMe.Web.RazorPages {
     public class Startup {
-        private readonly IHostingEnvironment _environment;
         private readonly IConfigurationRoot _config;
 
         public Startup(IHostingEnvironment env) {
-            this._environment = env;
+            // Set CWD to content root (needed when AspNetCoreHostingModel=InProcess)
+            Environment.CurrentDirectory = env.ContentRootPath;
 
+            // Load configuration
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("config.json", optional: false)
@@ -86,6 +87,9 @@ namespace Altairis.AskMe.Web.RazorPages {
                 }
             }
 
+            // HTTP error handling
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
             // Enable static file caching for one year
             app.UseStaticFiles(new StaticFileOptions {
                 OnPrepareResponse = ctx => {
@@ -94,7 +98,6 @@ namespace Altairis.AskMe.Web.RazorPages {
             });
 
             // Use other middleware
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseAuthentication();
             app.UseMvc();
         }

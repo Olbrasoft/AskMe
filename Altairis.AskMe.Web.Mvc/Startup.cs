@@ -12,12 +12,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Altairis.AskMe.Web.Mvc {
     public class Startup {
-        private readonly IHostingEnvironment _environment;
         private readonly IConfigurationRoot _config;
 
         public Startup(IHostingEnvironment env) {
-            this._environment = env;
+            // Set CWD to content root (needed when AspNetCoreHostingModel=InProcess)
+            Environment.CurrentDirectory = env.ContentRootPath;
 
+            // Load configuration
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("config.json", optional: false)
@@ -32,7 +33,7 @@ namespace Altairis.AskMe.Web.Mvc {
                 options.UseSqlite(this._config.GetConnectionString("AskDB"));
             });
 
-            // Configure Razor Pages
+            // Configure MVC
             services.AddMvc(options => {
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
@@ -86,6 +87,9 @@ namespace Altairis.AskMe.Web.Mvc {
                 }
             }
 
+            // HTTP error handling
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
             // Enable static file caching for one year
             app.UseStaticFiles(new StaticFileOptions {
                 OnPrepareResponse = ctx => {
@@ -94,7 +98,6 @@ namespace Altairis.AskMe.Web.Mvc {
             });
 
             // Use other middleware
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseAuthentication();
             app.UseMvc();
         }

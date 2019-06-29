@@ -1,0 +1,57 @@
+﻿@viewModel Altairis.AskMe.Web.DotVVM.ViewModels.MasterPageViewModel, Altairis.AskMe.Web.DotVVM
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>{{resource: PageTitle}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU="
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css"
+          integrity="sha256-7rF6RaSKyh16288E3hVdzQtHyzatA2MQRGu0cf6pqqM="
+          crossorigin="anonymous" />
+</head>
+<body Validator.InvalidCssClass="error">
+    <header>
+        <h1>ASKme</h1>
+        <div>zeptej se mě na co chceš, já na co chci odpovím</div>
+    </header>
+    <nav>
+        <dot:AuthenticatedView>
+            <AuthenticatedTemplate>
+                <ul>
+                    <li><dot:RouteLink RouteName="Home" Param-pageNumber=""><i class="fas fa-home"></i> Domů</dot:RouteLink></li>
+                    <li><dot:RouteLink RouteName="Questions" Param-pageNumber=""><i class="fas fa-question"></i> Otázky</dot:RouteLink></li>
+                    <li><dot:RouteLink RouteName="ChangePassword"><i class="fas fa-key"></i> Změna hesla</dot:RouteLink></li>
+                    <li><dot:RouteLink RouteName="Logout"><i class="fas fa-sign-out-alt"></i> Odhlášení</dot:RouteLink></li>
+                </ul>
+            </AuthenticatedTemplate>
+            <NotAuthenticatedTemplate>
+                <ul>
+                    <li><dot:RouteLink RouteName="Home" Param-pageNumber=""><i class="fas fa-home"></i> Domů</dot:RouteLink></li>
+                    <li><dot:RouteLink RouteName="Questions" Param-pageNumber=""><i class="fas fa-question"></i> Otázky</dot:RouteLink></li>
+                    <li><dot:RouteLink RouteName="Contact"><i class="fas fa-envelope"></i> Kontakt</dot:RouteLink></li>
+                </ul>
+            </NotAuthenticatedTemplate>
+        </dot:AuthenticatedView>
+    </nav>
+    <main>
+        <dot:ContentPlaceHolder ID="MainContent" />
+    </main>
+    <footer>
+        <ul>
+            <li>Copyright &copy; <a href="https://www.altairis.cz/">Altairis</a>, 2017-{{resource: System.DateTime.Today.Year}}</li>
+            <li title="{resource: EnvironmentName}">Using DotVVM</li>
+            <li><dot:RouteLink RouteName="RssFeed"><i class="fas fa-rss"></i> RSS</dot:RouteLink></li>
+            <dot:AuthenticatedView>
+                <NotAuthenticatedTemplate>
+                    <li><dot:RouteLink RouteName="Login" Text="&pi;" /></li>
+                </NotAuthenticatedTemplate>
+            </dot:AuthenticatedView>
+        </ul>
+    </footer>
+    <dot:RequiredResource Name="Styles" />
+</body>
+</html>
+
+
