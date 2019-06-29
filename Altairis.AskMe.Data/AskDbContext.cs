@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using Altairis.AskMe.Data.Base.Objects;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NLipsum.Core;
 
-namespace Altairis.AskMe.Data {
+namespace Altairis.AskMe.Data
+{
     public class AskDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int> {
         private const int SEED_MAX_QUESTION_SENTENCES = 5;
         private const int SEED_MAX_ANSWER_PARAGRAPHS = 20;
@@ -37,7 +39,7 @@ namespace Altairis.AskMe.Data {
                 var categoryIds = this.Categories.Select(c => c.Id).ToArray();
                 var rng = new Random();
                 var rtg = new LipsumGenerator();
-                for (int i = 0; i < numberOfQuestions; i++) {
+                for (var i = 0; i < numberOfQuestions; i++) {
                     var nq = new Question {
                         QuestionText = string.Join(" ", rtg.GenerateSentences(rng.Next(SEED_MAX_QUESTION_SENTENCES) + 1)),
                         DateCreated = DateTime.Now.AddHours(i - numberOfQuestions),

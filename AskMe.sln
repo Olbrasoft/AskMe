@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.AskMe.Data", "Altairis.AskMe.Data\Altairis.AskMe.Data.csproj", "{0AF0AE8C-874E-4E80-ACB3-B739DF25F293}"
 EndProject
@@ -18,7 +18,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.AskMe.Web.RazorPag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.AskMe.Web.Mvc", "Altairis.AskMe.Web.Mvc\Altairis.AskMe.Web.Mvc.csproj", "{5D4CED8D-6EA3-448F-A965-13CE929D9F20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altairis.AskMe.Web.DotVVM", "Altairis.AskMe.Web.DotVVM\Altairis.AskMe.Web.DotVVM.csproj", "{32FF1F69-41EF-4ACB-8FB8-05DD018660A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Altairis.AskMe.Web.DotVVM", "Altairis.AskMe.Web.DotVVM\Altairis.AskMe.Web.DotVVM.csproj", "{32FF1F69-41EF-4ACB-8FB8-05DD018660A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{739DF0CF-2588-4C19-91D5-03370005D20E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altairis.AskMe.Data.Tests", "Altairis.AskMe.Data.Tests\Altairis.AskMe.Data.Tests.csproj", "{EF99CD1A-44A2-44E8-A919-41880108DF68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,9 +46,16 @@ Global
 		{32FF1F69-41EF-4ACB-8FB8-05DD018660A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32FF1F69-41EF-4ACB-8FB8-05DD018660A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32FF1F69-41EF-4ACB-8FB8-05DD018660A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF99CD1A-44A2-44E8-A919-41880108DF68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF99CD1A-44A2-44E8-A919-41880108DF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF99CD1A-44A2-44E8-A919-41880108DF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF99CD1A-44A2-44E8-A919-41880108DF68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF99CD1A-44A2-44E8-A919-41880108DF68} = {739DF0CF-2588-4C19-91D5-03370005D20E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F57ECE7F-32E7-440B-81CD-6266928C13F6}

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Altairis.AskMe.Data.Base.Objects;
 
-namespace Altairis.AskMe.Data {
+namespace Altairis.AskMe.Data
+{
     public class Question {
 
         [Key]
