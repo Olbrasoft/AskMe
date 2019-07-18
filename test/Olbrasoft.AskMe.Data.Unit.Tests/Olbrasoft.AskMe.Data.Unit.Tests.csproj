@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Altairis.AskMe.Web.DotVVM\Altairis.AskMe.Web.DotVVM.csproj" />
     <ProjectReference Include="..\..\src\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
     <ProjectReference Include="..\..\src\Olbrasoft.Data\Olbrasoft.Data.csproj" />
   </ItemGroup>

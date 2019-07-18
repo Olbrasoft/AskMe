@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Transfer.Objects;
@@ -8,20 +7,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Olbrasoft.AskMe.Business;
 
-namespace Altairis.AskMe.Web.Mvc.Controllers {
-
+namespace Altairis.AskMe.Web.Mvc.Controllers
+{
     [Route("Admin"), Authorize]
-    public class AdminController : Controller {
+    public class AdminController : Controller
+    {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
 
         private readonly IAsk _askFacade;
 
         // Constructor
-        public AdminController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IAsk askFacade) {
+        public AdminController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IAsk askFacade)
+        {
             this.userManager = userManager;
             this.signInManager = signInManager;
             _askFacade = askFacade;
@@ -29,14 +29,15 @@ namespace Altairis.AskMe.Web.Mvc.Controllers {
 
         // Actions
         [Route("{questionId:int:min(1)}")]
-        public async Task<IActionResult> Index(int questionId) {
-            
+        public async Task<IActionResult> Index(int questionId)
+        {
             // Get question
             var q = await _askFacade.GetQuestionAsync(questionId);
             if (q == null) return NotFound();
 
             // Prepare model
-            var model = new IndexModel {
+            var model = new IndexModel
+            {
                 AnswerText = q.AnswerText,
                 CategoryId = q.CategoryId,
                 DisplayName = q.DisplayName,
@@ -49,8 +50,8 @@ namespace Altairis.AskMe.Web.Mvc.Controllers {
         }
 
         [HttpPost, Route("{questionId:int:min(1)}")]
-        public async Task<IActionResult> Index(int questionId, IndexModel model) {
-            
+        public async Task<IActionResult> Index(int questionId, IndexModel model)
+        {
             if (!ModelState.IsValid) return View(model);
 
             var question = new QuestionDto
@@ -61,13 +62,12 @@ namespace Altairis.AskMe.Web.Mvc.Controllers {
                 EmailAddress = model.EmailAddress,
                 QuestionText = model.QuestionText,
                 AnswerText = model.AnswerText
-
             };
 
             await _askFacade.EditAsync(question, out var notFound);
 
             if (notFound) return NotFound();
-        
+
             return this.RedirectToAction(
                 actionName: "Question",
                 controllerName: "Home",
@@ -78,8 +78,10 @@ namespace Altairis.AskMe.Web.Mvc.Controllers {
         public IActionResult ChangePassword() => this.View();
 
         [HttpPost, Route("ChangePassword")]
-        public async Task< IActionResult> ChangePassword(ChangePasswordModel model) {
-            if (this.ModelState.IsValid) {
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
                 // Get current user
                 var user = await this.userManager.GetUserAsync(this.User);
 
@@ -89,13 +91,17 @@ namespace Altairis.AskMe.Web.Mvc.Controllers {
                     model.OldPassword,
                     model.NewPassword);
 
-                if (result.Succeeded) {
+                if (result.Succeeded)
+                {
                     // OK, re-sign and redirect to homepage
                     await this.signInManager.SignInAsync(user, isPersistent: false);
                     return this.MessageView("Změna hesla", "Vaše heslo bylo úspěšně změněno.");
-                } else {
+                }
+                else
+                {
                     // Failed - show why
-                    foreach (var error in result.Errors) {
+                    foreach (var error in result.Errors)
+                    {
                         this.ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
