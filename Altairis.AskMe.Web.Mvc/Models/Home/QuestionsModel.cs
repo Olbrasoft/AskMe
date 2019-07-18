@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Altairis.AskMe.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Olbrasoft.AskMe.Data.Base.Objects;
 
 namespace Altairis.AskMe.Web.Mvc.Models.Home {
     public class QuestionsModel : PagedModel<Question> {
@@ -11,7 +11,6 @@ namespace Altairis.AskMe.Web.Mvc.Models.Home {
         public InputModel Input { get; set; }
 
         // Input model
-
         public class InputModel {
             [Required(ErrorMessage = "Není zadána otázka"), MaxLength(500), DataType(DataType.MultilineText)]
             public string QuestionText { get; set; }

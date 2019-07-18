@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data;
 using Altairis.AskMe.Web.Mvc.Models;
 using Altairis.AskMe.Web.Mvc.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Olbrasoft.AskMe.Data.Base.Objects;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.Mvc.Controllers {
     public class HomeController : Controller {
@@ -14,14 +15,12 @@ namespace Altairis.AskMe.Web.Mvc.Controllers {
         private readonly AppConfiguration config;
 
         // Constructor
-
         public HomeController(AskDbContext dbContext, IOptionsSnapshot<AppConfiguration> optionsSnapshot) {
             this.dbContext = dbContext;
             this.config = optionsSnapshot.Value;
         }
 
         // Actions
-
         [Route("{pageNumber:int:min(1)=1}")]
         public async Task<IActionResult> Index(int pageNumber) {
             var model = new PagedModel<Question>();

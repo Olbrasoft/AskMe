@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data;
 using Altairis.AskMe.Web.Mvc.Models.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Olbrasoft.AskMe.Data.Base.Objects;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.Mvc.Controllers {
 

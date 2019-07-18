@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Altairis.AskMe.Data;
+using Altairis.AskMe.Data.Base.Objects;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 
@@ -11,7 +11,7 @@ namespace Altairis.AskMe.Web.DotVVM.ViewModels.Account {
             this.signInManager = signInManager;
         }
 
-        public override string PageTitle => "Odhlášení";
+        public override string PageTitle => "Odhlï¿½enï¿½";
 
         public override async Task Load() => await this.signInManager.SignOutAsync();
 

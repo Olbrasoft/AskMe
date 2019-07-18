@@ -7,7 +7,7 @@ namespace Altairis.AskMe.Web.DotVVM.ViewModels {
 
         public abstract string PageTitle { get; }
 
-        public MasterPageViewModel(IHostingEnvironment env) {
+        protected MasterPageViewModel(IHostingEnvironment env) {
             this.EnvironmentName = env.EnvironmentName;
         }
 

@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
+    <ProjectReference Include="..\src\Olbrasoft.AskMe.Data.EntityFrameworkCore\Olbrasoft.AskMe.Data.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

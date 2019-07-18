@@ -69,9 +69,9 @@ dotnet_style_predefined_type_for_locals_parameters_members = true:warning
 
 #Style - qualification options
 
-#prefer fields to be prefaced with this. in C# or Me. in Visual Basic
-dotnet_style_qualification_for_field = true:warning
-#prefer methods to be prefaced with this. in C# or Me. in Visual Basic
-dotnet_style_qualification_for_method = true:warning
-#prefer properties to be prefaced with this. in C# or Me. in Visual Basic
-dotnet_style_qualification_for_property = true:warning
+
+# this. preferences
+dotnet_style_qualification_for_field = false:silent
+dotnet_style_qualification_for_property = false:silent
+dotnet_style_qualification_for_method = false:silent
+dotnet_style_qualification_for_event = false:silent

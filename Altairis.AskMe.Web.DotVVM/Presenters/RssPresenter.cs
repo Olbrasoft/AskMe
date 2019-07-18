@@ -5,12 +5,12 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using System.Xml;
-using Altairis.AskMe.Data;
 using DotVVM.Framework.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SyndicationFeed;
 using Microsoft.SyndicationFeed.Rss;
 using System.IO;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.DotVVM.Presenters {
     public class RssPresenter : IDotvvmPresenter {

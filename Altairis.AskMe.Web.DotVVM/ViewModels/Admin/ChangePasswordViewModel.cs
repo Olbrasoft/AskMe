@@ -2,8 +2,8 @@ using System.ComponentModel.DataAnnotations;
 using DotVVM.Framework.Runtime.Filters;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
+using Altairis.AskMe.Data.Base.Objects;
 using Microsoft.AspNetCore.Identity;
-using Altairis.AskMe.Data;
 using DotVVM.Framework.ViewModel.Validation;
 
 namespace Altairis.AskMe.Web.DotVVM.ViewModels.Admin {

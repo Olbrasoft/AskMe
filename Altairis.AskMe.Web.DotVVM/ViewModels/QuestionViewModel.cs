@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data;
-using Altairis.AskMe.Web.DotVVM.Dto;
+using Altairis.AskMe.Data.Transfer.Objects;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.DotVVM.ViewModels {
     public class QuestionViewModel : MasterPageViewModel {
@@ -17,15 +17,15 @@ namespace Altairis.AskMe.Web.DotVVM.ViewModels {
 
         public override string PageTitle => "Detail otázky";
 
-        public AnsweredQuestionDto Item { get; set; }
+        public QuestionDto Item { get; set; }
 
         public async override Task PreRender() {
             var questionId = Convert.ToInt32(this.Context.Parameters["questionId"]);
             var q = await this.dbContext.Questions
-                .ProjectTo<AnsweredQuestionDto>()
+                .ProjectTo<QuestionDto>()
                 .SingleOrDefaultAsync(x => x.Id == questionId);
             if (q == null) throw new ObjectNotFoundException();
-            this.Item = Mapper.Map<AnsweredQuestionDto>(q);
+            this.Item = Mapper.Map<QuestionDto>(q);
         }
     }
 }

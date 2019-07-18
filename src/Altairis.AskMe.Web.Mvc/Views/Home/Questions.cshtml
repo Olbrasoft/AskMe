@@ -1,0 +1,73 @@
+﻿@model Altairis.AskMe.Web.Mvc.Models.Home.UnansweredQuestionsModel
+@{ this.ViewBag.Title = "Nezodpovězené otázky"; }
+
+<section class="form" id="ask" for-login-status="false">
+    <form method="post">
+        <header>
+            <h2>Nová otázka</h2>
+        </header>
+        <div><textarea asp-for="Input.QuestionText" placeholder="Zadejte text své otázky..."></textarea></div>
+        <div>
+            <select asp-for="Input.CategoryId" asp-items="Model.Categories"></select>
+        </div>
+        <div>
+            <input asp-for="Input.DisplayName" placeholder="Jméno (nepovinné)" class="half-width" />
+            <input asp-for="Input.EmailAddress" placeholder="E-mail (nepovinné)" class="half-width" />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <footer>
+            <input type="submit" value="Odeslat" />
+        </footer>
+    </form>
+</section>
+
+@if (Model.UnansweredQuestions.TotalItemCount > 0) {
+    <h2>Nezodpovězené otázky</h2>
+    @foreach (var item in Model.UnansweredQuestions) {
+        var id = $"q_{item.Id}";
+        <article class="question" id="@id">
+            <header>
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-square fa-stack-2x"></i>
+                    <i class="fas fa-question fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="info">
+                    <i class="fas fa-tag"></i> @item.CategoryName
+                    <i class="fas fa-calendar"></i> <time value="@item.DateCreated"></time>
+                    @if (!string.IsNullOrWhiteSpace(item.DisplayName)) {
+                        <span><i class="fas fa-user"></i> @item.DisplayName</span>
+                    }
+                </span>
+            </header>
+            <plainText text="@item.QuestionText" html-encode="true"></plainText>
+            <footer for-login-status="true">
+                <a asp-controller="Admin" asp-action="Index" asp-route-questionId="@item.Id" class="button"><i class="fas fa-commenting"></i> Upravit</a>
+            </footer>
+        </article>
+    }
+
+    <div class="pager">
+        @if (!Model.UnansweredQuestions.IsFirstPage)
+        {
+            <div class="prev">
+                @if (@Model.UnansweredQuestions.PageNumber - 1 > 1)
+                {
+                    <a asp-route-pageNumber="1" class="button"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i></a>
+                }
+                <a asp-route-pageNumber="@(Model.UnansweredQuestions.PageNumber - 1)" class="button"><i class="fas fa-chevron-left"></i> Předchozí</a>
+            </div>
+        }
+        @if (Model.UnansweredQuestions.HasNextPage)
+        {
+            <div class="next">
+                <a asp-route-pageNumber="@(Model.UnansweredQuestions.PageNumber + 1)" class="button">Následující <i class="fas fa-chevron-right"></i></a>
+                @if (Model.UnansweredQuestions.PageNumber + 1 <Model.UnansweredQuestions.PageCount)
+                {
+                    <a asp-route-pageNumber="@Model.UnansweredQuestions.PageCount" class="button"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></a>
+                }
+            </div>
+        }
+        <p>Strana @Model.UnansweredQuestions.PageNumber z @Model.UnansweredQuestions.PageCount, celkem @Model.UnansweredQuestions.TotalItemCount položek.</p>
+    </div>
+    @*<vc:pager model="Model.Paging"></vc:pager>*@
+}

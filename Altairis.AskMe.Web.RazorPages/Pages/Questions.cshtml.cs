@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data;
+using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Web.RazorPages.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.RazorPages.Pages {
     public class QuestionsModel : PagedPageModel<Question> {

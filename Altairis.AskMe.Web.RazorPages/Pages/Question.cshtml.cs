@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
-using Altairis.AskMe.Data;
+using Altairis.AskMe.Data.Base.Objects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.RazorPages.Pages {
     public class QuestionModel : PageModel {

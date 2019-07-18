@@ -1,0 +1,66 @@
+﻿@model Olbrasoft.Collections.Generic.IPagedList<Altairis.AskMe.Data.Transfer.Objects.QuestionDto>
+
+@foreach (var item in Model)
+{
+    var id = $"q_{item.Id}";
+    <article class="answer" id="@id">
+        <section class="question">
+            <header>
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-square fa-stack-2x"></i>
+                    <i class="fas fa-question fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="info">
+                    <i class="fas fa-tag"></i> @item.CategoryName
+                    <i class="fas fa-calendar"></i> <time value="@item.DateCreated"></time>
+                    @if (!string.IsNullOrWhiteSpace(item.DisplayName))
+                    {
+                        <span><i class="fas fa-user"></i> @item.DisplayName</span>
+                    }
+                </span>
+            </header>
+            <plainText text="@item.QuestionText" html-encode="true"></plainText>
+        </section>
+        <section class="answer">
+            <header>
+                <span class="fa-stack fa-lg">
+                    <i class="fas fa-square fa-stack-2x"></i>
+                    <i class="fas fa-comment fa-stack-1x fa-inverse"></i>
+                </span>
+                <span class="info">
+                    <i class="fas fa-calendar"></i> <time value="@item.DateAnswered"></time>
+                </span>
+            </header>
+            <plainText text="@item.AnswerText" html-encode="true"></plainText>
+            <footer for-login-status="true">
+                <a asp-controller="Admin" asp-action="Index" asp-route-questionId="@item.Id" class="button"><i class="fas fa-commenting"></i> Upravit</a>
+            </footer>
+        </section>
+    </article>
+}
+
+<div class="pager">
+    @if (!Model.IsFirstPage)
+    {
+        <div class="prev">
+            @if (@Model.PageNumber - 1 > 1)
+            {
+                <a asp-route-pageNumber="1" class="button"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i></a>
+            }
+            <a asp-route-pageNumber="@(Model.PageNumber - 1)" class="button"><i class="fas fa-chevron-left"></i> Předchozí</a>
+        </div>
+    }
+    @if (Model.HasNextPage)
+    {
+        <div class="next">
+            <a asp-route-pageNumber="@(Model.PageNumber + 1)" class="button">Následující <i class="fas fa-chevron-right"></i></a>
+            @if (Model.PageNumber + 1 < Model.PageCount)
+            {
+                <a asp-route-pageNumber="@Model.PageCount" class="button"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></a>
+            }
+        </div>
+    }
+    <p>Strana @Model.PageNumber z @Model.PageCount, celkem @Model.TotalItemCount položek.</p>
+</div>
+
+@*<vc:pager model="Model.Paging"></vc:pager>*@

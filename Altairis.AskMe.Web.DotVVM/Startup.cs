@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Altairis.AskMe.Data;
+using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Web.DotVVM.Presenters;
 using DotVVM.Framework.Hosting;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.DotVVM {
     public class Startup {

@@ -6,11 +6,11 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using System.Xml;
-using Altairis.AskMe.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SyndicationFeed;
 using Microsoft.SyndicationFeed.Rss;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.Mvc.Controllers {
     public class SyndicationController : Controller {

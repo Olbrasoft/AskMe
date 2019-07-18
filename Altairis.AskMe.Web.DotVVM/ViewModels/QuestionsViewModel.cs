@@ -2,21 +2,22 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data;
-using Altairis.AskMe.Web.DotVVM.Dto;
+using Altairis.AskMe.Data.Base.Objects;
+using Altairis.AskMe.Data.Transfer.Objects;
 using AutoMapper.QueryableExtensions;
 using DotVVM.Framework.ViewModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 
 namespace Altairis.AskMe.Web.DotVVM.ViewModels {
     public class QuestionsViewModel : PagedViewModel<UnansweredQuestionDto> {
         private readonly AskDbContext dbContext;
 
         [Bind(Direction.ServerToClientFirstRequest)]
-        public IEnumerable<SelectListItemDto> Categories => this.dbContext.Categories
+        public IEnumerable<CategoryListItemDto> Categories => this.dbContext.Categories
             .OrderBy(c => c.Name)
-            .Select(c => new SelectListItemDto { Text = c.Name, Value = c.Id });
+            .Select(c => new CategoryListItemDto { Text = c.Name, Value = c.Id });
 
         public InputModel Input { get; set; }
 
