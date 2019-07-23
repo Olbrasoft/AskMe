@@ -22,6 +22,7 @@ namespace Olbrasoft.AskMe.Business
 
         Task<bool> ExistQuestionAsync(int questionId);
         
+        
         //Task<IEnumerable<SyndicationQuestionDto>> GetSyndicationQuestionsAsync(int maxTake);
     }
 }

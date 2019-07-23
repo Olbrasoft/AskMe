@@ -47,7 +47,7 @@ namespace Altairis.AskMe.Web.RazorPages.Pages.Admin {
         // Handlers
 
         public async Task<IActionResult> OnGetAsync(int questionId) {
-            // Get question
+            // Create question
             var q = await this.dbContext.Questions.FindAsync(questionId);
             if (q == null) return this.NotFound();
 
@@ -64,7 +64,7 @@ namespace Altairis.AskMe.Web.RazorPages.Pages.Admin {
         }
 
         public async Task<IActionResult> OnPostAsync(int questionId) {
-            // Get question
+            // Create question
             var q = await this.dbContext.Questions.FindAsync(questionId);
             if (q == null) return this.NotFound();
 

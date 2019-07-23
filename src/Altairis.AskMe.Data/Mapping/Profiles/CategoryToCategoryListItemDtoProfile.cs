@@ -4,11 +4,11 @@ using AutoMapper;
 
 namespace Altairis.AskMe.Data.Mapping.Profiles
 {
-    public class CategoryToCategoryListItemDtoProfile :Profile
+    public class CategoryToCategoryListItemDtoProfile :MapProfile<Category, CategoryListItemDto>
     {
         public CategoryToCategoryListItemDtoProfile()
         {
-            CreateMap<Category, CategoryListItemDto>()
+            Expression
                 .ForMember(d => d.Value, opt => opt.MapFrom(src => src.Id))
                 .ForMember(d=>d.Text , opt=>opt.MapFrom(src=>src.Name))
                 ; 

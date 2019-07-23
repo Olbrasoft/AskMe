@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
@@ -19,7 +16,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         public void Instance_Is_QueryHandler_Of_QuestionByIdQuery_Comma_Question_Comma_QuestionDto()
         {
             //Arrange
-            var type = typeof(QueryHandler<QuestionByIdQuery,Question,QuestionDto>);
+            var type = typeof(AskQueryHandler<QuestionByIdQuery,QuestionDto,Question>);
 
             //Act
             var handler = QuestionByIdQueryHandler();
@@ -48,7 +45,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
             var contextMock = new Mock<AskDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new QuestionByIdQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new QuestionByIdQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
     }

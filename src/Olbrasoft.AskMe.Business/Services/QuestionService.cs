@@ -5,9 +5,9 @@ using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Commands;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
-using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Commanding;
 using Olbrasoft.Pagination;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Services
 {
@@ -19,7 +19,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<QuestionDto> GetAsync(int id, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Get<QuestionByIdQuery>();
+            var query = QueryFactory.Create<QuestionByIdQuery>();
             query.QuestionId = id;
 
             return query.ExecuteAsync(cancellationToken);
@@ -27,7 +27,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IResultWithTotalCount<QuestionDto>> GetAnsweredAsync(IPageInfo pagingSettings, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Get<PagedAnsweredQuestionsQuery>();
+            var query = QueryFactory.Create<PagedAnsweredQuestionsQuery>();
             query.Paging = pagingSettings;
 
             return query.ExecuteAsync(cancellationToken);
@@ -35,7 +35,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IResultWithTotalCount<UnansweredQuestionDto>> GetUnansweredAsync(IPageInfo pagingSettings, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Get<PagedUnansweredQuestionsQuery>();
+            var query = QueryFactory.Create<PagedUnansweredQuestionsQuery>();
             query.Paging = pagingSettings;
 
             return query.ExecuteAsync(cancellationToken);
@@ -43,7 +43,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task AddAsync(Question question, CancellationToken token = default)
         {
-            var command = CommandFactory.Get<InsertQuestionCommand>();
+            var command = CommandFactory.Create<InsertQuestionCommand>();
             command.Data = question;
 
             return command.ExecuteAsync(token);
@@ -51,7 +51,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IEnumerable<SyndicationQuestionDto>> GetSyndicationsAsync(int take, CancellationToken token = default)
         {
-            var query = QueryFactory.Get<SyndicationQuestionsQuery>();
+            var query = QueryFactory.Create<SyndicationQuestionsQuery>();
             query.Take = take;
 
             return query.ExecuteAsync(token);
@@ -59,7 +59,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task EditAsync(QuestionDto question, out bool notFound ,CancellationToken token = default)
         {
-            var command = CommandFactory.Get<UpdateQuestionCommand>();
+            var command = CommandFactory.Create<UpdateQuestionCommand>();
             command.Data = question;
             var result = command.ExecuteAsync(token);
             notFound = command.NotFound;
@@ -70,7 +70,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<bool> ExistAsync(int id, CancellationToken token = default)
         {
-            var query = QueryFactory.Get<ExistQuestionQuery>();
+            var query = QueryFactory.Create<ExistQuestionQuery>();
             query.QuestionId = id;
 
             return query.ExecuteAsync(token);

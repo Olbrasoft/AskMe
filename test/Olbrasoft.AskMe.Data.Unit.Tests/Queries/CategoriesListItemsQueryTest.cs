@@ -3,7 +3,7 @@ using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.Unit.Tests.Queries
 {

@@ -1,19 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Altairis.AskMe.Data.Commands;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.CommandHandlers;
-using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Mapping;
+using Olbrasoft.Commanding;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
 {
     public class InsertQuestionCommandHandlerTest
     {
+
         [Test]
         public void Instance_Is_AskCommandHandler_Of_InsertQuestionCommand()
         {
@@ -24,7 +20,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
             var handler = InsertQuestionCommandHandler();
 
             //Assert
-            Assert.IsInstanceOf(type,handler);
+            Assert.IsInstanceOf(type, handler);
         }
 
         [Test]
@@ -45,7 +41,6 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
 
         private static InsertQuestionCommandHandler InsertQuestionCommandHandler()
         {
-            var mapperMock = new Mock<IMap>();
             var contextMock = new Mock<AskDbContext>();
 
             var handler = new InsertQuestionCommandHandler(contextMock.Object);

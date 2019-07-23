@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
@@ -19,38 +16,35 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         public void Instance_Is_Handler()
         {
             //Arrange
-            var type = typeof(Handler<AwesomeQuery, IQueryable<AwesomeEntity>, AwesomeResult>);
+            var type = typeof(AskQueryHandler<AwesomeQuery,  AwesomeResult,AwesomeEntity>);
 
             //Act
             var handler = AwesomeQueryHandler();
 
             //Assert
-            Assert.IsInstanceOf(type,handler);
+            Assert.IsInstanceOf(type, handler);
         }
 
         private static AwesomeQueryHandler AwesomeQueryHandler()
         {
-           // var contextOptionMock = new Mock<DbContextOptions<AskDbContext>>();
+            // var contextOptionMock = new Mock<DbContextOptions<AskDbContext>>();
             var contextMock = new Mock<AskDbContext>(MockBehavior.Strict);
             var projectorMock = new Mock<IProjection>();
-            
-            var handler = new AwesomeQueryHandler(contextMock.Object,projectorMock.Object);
+
+            var handler = new AwesomeQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
     }
 
-
-
-
-    public class AwesomeQueryHandler :QueryHandler<AwesomeQuery,AwesomeEntity,AwesomeResult>
+    public class AwesomeQueryHandler : AskQueryHandler<AwesomeQuery, AwesomeResult, AwesomeEntity>
     {
-        public AwesomeQueryHandler(AskDbContext context, IProjection projector) : base(context, projector)
+       
+        public override Task<AwesomeResult> HandleAsync(AwesomeQuery query, CancellationToken token) => throw new NotImplementedException();
+
+        public AwesomeQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
         {
         }
-
-        public override Task<AwesomeResult> HandleAsync(AwesomeQuery query, CancellationToken token) => throw new NotImplementedException();
     }
-
 
     public class AwesomeQuery : IQuery<AwesomeResult>
     {

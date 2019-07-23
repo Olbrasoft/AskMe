@@ -5,20 +5,20 @@ using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Mapping;
 using Olbrasoft.Pagination;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
     public class PagedAnsweredQuestionsQueryHandlerTest
     {
         [Test]
-        public void Instance_Is_QueryHandler_Of_PagedAnsweredQuestionsQuery_Comma_Question_Comma_IResultWithTotalCount_Of_AnsweredQuestionDto()
+        public void Instance_Inherits_From_DbQueryHandler_Of_PagedAnsweredQuestionsQuery_Comma_IResultWithTotalCount_Of_AnsweredQuestionDto_Comma_Question()
         {
             //Arrange
             var type =
-                typeof(QueryHandler<PagedAnsweredQuestionsQuery, Question, IResultWithTotalCount<QuestionDto>>);
+                typeof(AskQueryHandler<PagedAnsweredQuestionsQuery, IResultWithTotalCount<QuestionDto>, Question>);
 
             //Act
             var handler = PagedAnsweredQuestionsQueryHandler();
@@ -47,7 +47,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
             var askDbContextMock = new Mock<AskDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new PagedAnsweredQuestionsQueryHandler(askDbContextMock.Object, projectorMock.Object);
+            var handler = new PagedAnsweredQuestionsQueryHandler(projectorMock.Object, askDbContextMock.Object);
             return handler;
         }
     }

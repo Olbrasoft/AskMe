@@ -1,9 +1,8 @@
 ﻿using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Commands;
-using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Commanding;
+using Olbrasoft.Commanding;
 
 namespace Olbrasoft.AskMe.Data.Unit.Tests.Commands
 {
@@ -19,7 +18,7 @@ namespace Olbrasoft.AskMe.Data.Unit.Tests.Commands
             var command = InsertQuestionCommand();
 
             //Assert
-            Assert.IsInstanceOf(type,command);
+            Assert.IsInstanceOf(type, command);
         }
 
         private static InsertQuestionCommand InsertQuestionCommand()

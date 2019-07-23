@@ -1,8 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Commands;
-using Olbrasoft.Data.Mapping;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.CommandHandlers
 {

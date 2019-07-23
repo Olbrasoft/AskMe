@@ -15,7 +15,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Altairis.AskMe.Web.RazorPages\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
     <ProjectReference Include="..\..\src\Olbrasoft.AskMe.Data.EntityFrameworkCore\Olbrasoft.AskMe.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying.Mapping.EntityFrameworkCore\Olbrasoft.Querying.Mapping.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\..\..\..\.nuget\packages\automapper\8.1.0\lib\netstandard2.0\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core">
+      <HintPath>..\..\..\..\..\..\.nuget\packages\xunit.extensibility.core\2.4.0\lib\netstandard2.0\xunit.core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

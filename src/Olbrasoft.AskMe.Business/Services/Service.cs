@@ -1,5 +1,5 @@
-﻿using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Querying;
+﻿using Olbrasoft.Commanding;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Services
 {
@@ -9,7 +9,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         protected ICommandFactory CommandFactory { get; }
 
-        protected Service( ICommandFactory commandFactory, IQueryFactory queryFactory)
+        protected Service(ICommandFactory commandFactory, IQueryFactory queryFactory)
         {
             CommandFactory = commandFactory;
             QueryFactory = queryFactory;

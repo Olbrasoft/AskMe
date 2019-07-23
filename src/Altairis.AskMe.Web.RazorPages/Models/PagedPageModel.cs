@@ -18,14 +18,14 @@ namespace Altairis.AskMe.Web.RazorPages.Models {
             if (pageNumber < 1) throw new ArgumentOutOfRangeException(nameof(pageNumber));
             if (pageSize < 1) throw new ArgumentOutOfRangeException(nameof(pageSize));
 
-            // Get number of records
+            // Create number of records
             this.Paging.TotalRecords = await dataSource.CountAsync();
             this.Paging.PageNumber = pageNumber;
             this.Paging.TotalPages = (int)Math.Ceiling(this.Paging.TotalRecords / (float)pageSize);
             this.Paging.PrevPageNumber = pageNumber - 1;
             this.Paging.NextPageNumber = this.Paging.PageNumber == this.Paging.TotalPages ? 0 : pageNumber + 1;
 
-            // Get data
+            // Create data
             this.Data = dataSource.Skip(this.Paging.PrevPageNumber * pageSize).Take(pageSize);
         }
 

@@ -6,21 +6,20 @@ using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
+using Olbrasoft.Mapping;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
 {
-    public class CategoriesListItemsQueryHandler : QueryHandler<CategoriesListItemsQuery, Category,
-            IEnumerable<CategoryListItemDto>>
+    public class CategoriesListItemsQueryHandler : AskQueryHandler<CategoriesListItemsQuery, IEnumerable<CategoryListItemDto>, Category>
     {
-        public CategoriesListItemsQueryHandler(AskDbContext context, IProjection projector) : base(context, projector)
-        {
-        }
-
         public override async Task<IEnumerable<CategoryListItemDto>> HandleAsync(CategoriesListItemsQuery query,
             CancellationToken token)
         {
-            return await ProjectTo<CategoryListItemDto>(Source.OrderBy(x => x.Name)).ToArrayAsync(token);
+            return await ProjectTo<CategoryListItemDto>(Entities().OrderBy(x => x.Name)).ToArrayAsync(token);
+        }
+
+        public CategoriesListItemsQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        {
         }
     }
 }

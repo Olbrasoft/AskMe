@@ -7,9 +7,9 @@ using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Business.Services;
-using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Commanding;
 using Olbrasoft.Pagination;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Tests.Services
 {
@@ -141,25 +141,25 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
             var commandFactoryMock = new Mock<ICommandFactory>();
             var queryFactoryMock = new Mock<IQueryFactory>();
 
-            commandFactoryMock.Setup(p => p.Get<InsertQuestionCommand>())
+            commandFactoryMock.Setup(p => p.Create<InsertQuestionCommand>())
                 .Returns(new InsertQuestionCommand(dispatcherMock.Object));
 
-            commandFactoryMock.Setup(p => p.Get<UpdateQuestionCommand>())
+            commandFactoryMock.Setup(p => p.Create<UpdateQuestionCommand>())
                 .Returns(new UpdateQuestionCommand(dispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<SyndicationQuestionsQuery>())
+            queryFactoryMock.Setup(p => p.Create<SyndicationQuestionsQuery>())
                 .Returns(new SyndicationQuestionsQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<PagedAnsweredQuestionsQuery>())
+            queryFactoryMock.Setup(p => p.Create<PagedAnsweredQuestionsQuery>())
                 .Returns(new PagedAnsweredQuestionsQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<PagedUnansweredQuestionsQuery>())
+            queryFactoryMock.Setup(p => p.Create<PagedUnansweredQuestionsQuery>())
                 .Returns(new PagedUnansweredQuestionsQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<QuestionByIdQuery>())
+            queryFactoryMock.Setup(p => p.Create<QuestionByIdQuery>())
                 .Returns(new QuestionByIdQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Get<ExistQuestionQuery>())
+            queryFactoryMock.Setup(p => p.Create<ExistQuestionQuery>())
                 .Returns(new ExistQuestionQuery(queryDispatcherMock.Object));
 
             var service = new QuestionService(commandFactoryMock.Object, queryFactoryMock.Object);

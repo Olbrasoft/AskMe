@@ -5,20 +5,16 @@ using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
+using Olbrasoft.Mapping;
 using Olbrasoft.Pagination;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
 {
-    public class PagedUnansweredQuestionsQueryHandler : QueryHandler<PagedUnansweredQuestionsQuery, Question, IResultWithTotalCount<UnansweredQuestionDto>>
+    public class PagedUnansweredQuestionsQueryHandler : AskQueryHandler<PagedUnansweredQuestionsQuery, IResultWithTotalCount<UnansweredQuestionDto>, Question>
     {
-        public PagedUnansweredQuestionsQueryHandler(AskDbContext context, IProjection projector) : base(context, projector)
-        {
-        }
-
         public override async Task<IResultWithTotalCount<UnansweredQuestionDto>> HandleAsync(PagedUnansweredQuestionsQuery query, CancellationToken token)
         {
-            var unansweredQuestions = Source.Include(x => x.Category)
+            var unansweredQuestions = Entities().Include(x => x.Category)
                 .Where(x => !x.DateAnswered.HasValue)
                 .OrderByDescending(x => x.DateCreated);
 
@@ -32,6 +28,10 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
             };
 
             return result;
+        }
+
+        public PagedUnansweredQuestionsQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        {
         }
     }
 }

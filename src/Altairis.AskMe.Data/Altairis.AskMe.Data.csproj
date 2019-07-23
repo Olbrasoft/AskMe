@@ -5,11 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Commanding\Olbrasoft.Commanding.csproj" />
     <ProjectReference Include="..\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying\Olbrasoft.Querying.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\..\..\..\.nuget\packages\automapper\8.1.0\lib\netstandard2.0\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Identity.Stores">
       <HintPath>..\..\..\..\..\..\.nuget\packages\microsoft.extensions.identity.stores\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Identity.Stores.dll</HintPath>
     </Reference>

@@ -32,7 +32,7 @@ namespace Altairis.AskMe.Web.RazorPages.Pages.Admin {
 
         public async Task<IActionResult> OnPostAsync() {
             if (this.ModelState.IsValid) {
-                // Get current user
+                // Create current user
                 var user = await this.userManager.GetUserAsync(this.User);
 
                 // Try to change password

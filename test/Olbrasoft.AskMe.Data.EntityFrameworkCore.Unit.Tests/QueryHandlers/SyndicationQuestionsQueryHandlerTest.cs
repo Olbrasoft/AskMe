@@ -6,8 +6,8 @@ using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
@@ -17,7 +17,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         public void Instance_Is_QueryHandler_Of_SyndicationQuestionsQuery_Comma_Question_Comma_IEnumerable_Of_SyndicationQuestionDto()
         {
             //Arrange
-            var type = typeof(QueryHandler<SyndicationQuestionsQuery, Question, IEnumerable<SyndicationQuestionDto>>);
+            var type = typeof(AskQueryHandler<SyndicationQuestionsQuery,  IEnumerable<SyndicationQuestionDto>,Question>);
 
             //Act
             var handler = SyndicationQuestionsQueryHandler();
@@ -49,7 +49,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
             var contextMock = new Mock<AskDbContext>();
             var projectorMock = new Mock<IProjection>();
 
-            var handler = new SyndicationQuestionsQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new SyndicationQuestionsQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
         }
     }

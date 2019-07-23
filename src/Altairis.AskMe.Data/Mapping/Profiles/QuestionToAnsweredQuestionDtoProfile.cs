@@ -4,11 +4,8 @@ using AutoMapper;
 
 namespace Altairis.AskMe.Data.Mapping.Profiles
 {
-    public class QuestionToAnsweredQuestionDtoProfile : Profile
+    public class QuestionToAnsweredQuestionDtoProfile : MapProfile<Question, QuestionDto>
     {
-        public QuestionToAnsweredQuestionDtoProfile()
-        {
-            CreateMap<Question, QuestionDto>();
-        }
+       
     }
 }

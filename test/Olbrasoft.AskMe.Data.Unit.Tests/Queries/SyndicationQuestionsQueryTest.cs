@@ -3,7 +3,7 @@ using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.Unit.Tests.Queries
 {
@@ -22,7 +22,6 @@ namespace Olbrasoft.AskMe.Data.Unit.Tests.Queries
             Assert.IsInstanceOf(type, query);
         }
 
-
         [Test]
         public void Take()
         {
@@ -34,10 +33,8 @@ namespace Olbrasoft.AskMe.Data.Unit.Tests.Queries
             query.Take = take;
 
             //Assert
-            Assert.AreEqual(take,query.Take);
+            Assert.AreEqual(take, query.Take);
         }
-
-
 
         private static SyndicationQuestionsQuery SyndicationQuestionsQuery()
         {

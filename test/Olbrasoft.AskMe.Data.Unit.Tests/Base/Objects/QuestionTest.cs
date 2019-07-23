@@ -18,9 +18,7 @@ namespace Olbrasoft.AskMe.Data.Unit.Tests.Base.Objects
             };
 
             //Assert
-            Assert.AreEqual(id,question.Id);
-            
+            Assert.AreEqual(id, question.Id);
         }
-
     }
 }

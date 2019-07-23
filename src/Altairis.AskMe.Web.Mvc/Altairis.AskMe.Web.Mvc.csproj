@@ -22,6 +22,9 @@
     <ProjectReference Include="..\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
     <ProjectReference Include="..\Olbrasoft.AskMe.Business\Olbrasoft.AskMe.Business.csproj" />
     <ProjectReference Include="..\Olbrasoft.AskMe.Data.EntityFrameworkCore\Olbrasoft.AskMe.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Commanding.Castle\Olbrasoft.Commanding.Castle.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.Castle\Olbrasoft.Querying.Castle.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,8 +6,8 @@ using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Mapping;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 {
@@ -17,8 +17,8 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         public void Instance_Is_QueryHandler_Of_CategoriesListItemsQuery_Comma_Category_Comma_IEnumerable_Of_CategoryListItemDto()
         {
             //Arrange
-            var type = typeof(QueryHandler<CategoriesListItemsQuery, Category, IEnumerable<CategoryListItemDto>>);
-
+            var type = typeof(AskQueryHandler<CategoriesListItemsQuery, IEnumerable<CategoryListItemDto>,Category>);
+            
             //Act
             var handler = CategoriesListItemsQueryHandler();
 
@@ -34,7 +34,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
 
             var dispatcherMock = new Mock<IQueryDispatcher>();
             var query = new CategoriesListItemsQuery(dispatcherMock.Object);
-            
+
             //Act
             var result = handler.HandleAsync(query);
 
@@ -45,9 +45,9 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         private static CategoriesListItemsQueryHandler CategoriesListItemsQueryHandler()
         {
             var contextMock = new Mock<AskDbContext>();
-            var projectorMock = new Mock<IProjection>();
+           var projectorMock= new Mock<IProjection>();
 
-            var handler = new CategoriesListItemsQueryHandler(contextMock.Object, projectorMock.Object);
+            var handler = new CategoriesListItemsQueryHandler(projectorMock.Object,contextMock.Object);
             return handler;
         }
     }

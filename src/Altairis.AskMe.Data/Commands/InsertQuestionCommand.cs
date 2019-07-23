@@ -1,6 +1,5 @@
 ﻿using Altairis.AskMe.Data.Base.Objects;
-using Altairis.AskMe.Data.Transfer.Objects;
-using Olbrasoft.Data.Commanding;
+using Olbrasoft.Commanding;
 
 namespace Altairis.AskMe.Data.Commands
 {
@@ -8,7 +7,6 @@ namespace Altairis.AskMe.Data.Commands
     {
         public InsertQuestionCommand(ICommandDispatcher dispatcher) : base(dispatcher)
         {
-            
         }
     }
 }

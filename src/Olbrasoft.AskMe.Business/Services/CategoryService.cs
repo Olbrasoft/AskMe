@@ -3,8 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
-using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Commanding;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Services
 {
@@ -16,7 +16,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IEnumerable<CategoryListItemDto>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Get<CategoriesListItemsQuery>();
+            var query = QueryFactory.Create<CategoriesListItemsQuery>();
 
             return query.ExecuteAsync(cancellationToken);
         }

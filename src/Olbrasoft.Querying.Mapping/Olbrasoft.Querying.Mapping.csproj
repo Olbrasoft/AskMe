@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Altairis.AskMe.Web.RazorPages\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying\Olbrasoft.Querying.csproj" />
+  </ItemGroup>
+
+</Project>

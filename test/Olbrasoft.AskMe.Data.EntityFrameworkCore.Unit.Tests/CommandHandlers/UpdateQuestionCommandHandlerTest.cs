@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.CommandHandlers;
-using Olbrasoft.Data.Commanding;
+using Olbrasoft.Commanding;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
 {
@@ -29,18 +29,14 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
             return handler;
         }
 
-
         [Test]
         public void HandleAsync()
         {
             //Arrange
 
-
             //Act
 
-
             //Assert
-
         }
     }
 }

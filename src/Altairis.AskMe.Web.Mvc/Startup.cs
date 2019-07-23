@@ -2,6 +2,7 @@
 using System.Linq;
 using Altairis.AskMe.Data.Base.Objects;
 using AutoMapper;
+using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
@@ -16,16 +17,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Olbrasoft.AskMe.Business;
 using Olbrasoft.AskMe.Business.Services;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
-using Olbrasoft.AskMe.Data.EntityFrameworkCore.CommandHandlers;
-using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
-using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Commanding.Factories;
-using Olbrasoft.Data.Mapping;
-using Olbrasoft.Data.Mapping.AutoMapper;
-using Olbrasoft.Data.Querying;
-using Olbrasoft.Data.Querying.Factories;
-using Olbrasoft.Dependence;
-using Olbrasoft.Dependence.Inversion.Of.Control.Containers.Castle;
+using Olbrasoft.Commanding.Castle;
+using Olbrasoft.Mapping;
+using Olbrasoft.Mapping.AutoMapper;
+using Olbrasoft.Querying.Castle;
 
 namespace Altairis.AskMe.Web.Mvc
 {
@@ -44,47 +39,33 @@ namespace Altairis.AskMe.Web.Mvc
                 .AddJsonFile("config.json", optional: false)
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            this._config = builder.Build();
+            _config = builder.Build();
         }
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             var container = new WindsorContainer();
+            container.AddFacility<TypedFactoryFacility>();
 
             services.AddDbContext<AskDbContext>(options =>
             {
                 options.UseSqlite(_config.GetConnectionString("AskDB"));
             });
 
-            ConfigureCommanding(container);
+            services.AddAutoMapper(typeof(Data.MapProfile<,>).Assembly);
+
+            container.Register(Component.For<IProjection>().ImplementedBy<Projector>());
+
+            container.AddCommanding();
 
             ConfigureCommands(container);
 
             ConfigureCommandsHandlers(container);
+            
+          
+            container.AddQuering(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
 
-
-            #region Querying ------------------------------------------------------------------------------------------
-
-            container.Register(Component.For<IResolver>().ImplementedBy<ObjectResolverWithDependentCastle>());
-
-            ConfigureQuerying(container);
-
-            ConfigureQueries(container);
-
-            ConfigureQueryHandlers(container);
-
-            #endregion Querying ------------------------------------------------------------------------------------------
-
-            #region Mapping --------------------------------------------------------------------------------------------
-
-            services.AddAutoMapper(typeof(Data.Mapping.MapperConfigurationProvider).Assembly);
-
-            //container.Register(Component.For<AutoMapper.IConfigurationProvider>().ImplementedBy<Data.Mapping.MapperConfigurationProvider>().LifestyleSingleton());
-
-            container.Register(Component.For<IProjection>().ImplementedBy<Projector>().LifestyleSingleton());
-
-            #endregion Mapping --------------------------------------------------------------------------------------------
-
+      
             ConfigureBusiness(container);
 
             // Configure MVC
@@ -137,15 +118,7 @@ namespace Altairis.AskMe.Web.Mvc
             );
         }
 
-        private static void ConfigureQueryHandlers(IWindsorContainer container)
-        {
-            var classes = Classes.FromAssemblyNamed(typeof(QueryHandler<,,>).Assembly.GetName().Name);
-
-            container.Register(classes
-                .Where(ns => ns.Namespace != null && ns.Namespace.Contains(nameof(Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers)))
-                .WithServiceFirstInterface()
-                .LifestyleCustom<MsScopedLifestyleManager>());
-        }
+       
 
         private static void ConfigureCommandsHandlers(IWindsorContainer container)
         {
@@ -157,53 +130,21 @@ namespace Altairis.AskMe.Web.Mvc
                 .LifestyleCustom<MsScopedLifestyleManager>());
         }
 
-
-        private static void ConfigureQueries(IWindsorContainer container)
-        {
-            var classes = Classes.FromAssemblyNamed("Altairis.AskMe.Data");
-
-            container.Register(classes
-                .Where(type => type.Namespace != null && type.Namespace.Contains("Queries"))
-                .WithServiceSelf());
-        }
+      
 
         private static void ConfigureCommands(IWindsorContainer container)
         {
             var classes = Classes.FromAssemblyNamed("Altairis.AskMe.Data");
 
             container.Register(classes
-                .Where(type => type.Namespace != null && type.Namespace.Contains("Commands"))
-                .WithServiceSelf());
+                .Where(type => type.Namespace != null && type.Namespace.Contains("Commands")));
         }
 
-        private static void ConfigureQuerying(IWindsorContainer container)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager, IMapper autoMapper)
         {
-            container.Register(Component.For<IQueryFactory>().ImplementedBy<QueryFactory>().LifestyleSingleton());
 
-            container.Register(Component.For(typeof(QueryExecutor<,>)).ImplementedBy(typeof(QueryExecutor<,>))
-                .LifestyleCustom<MsScopedLifestyleManager>());
+            autoMapper.ConfigurationProvider.AssertConfigurationIsValid();
 
-            container.Register(
-                Component.For<IQueryExecutorFactory>().ImplementedBy<QueryExecutorFactory>().LifestyleSingleton());
-
-            container.Register(Component.For<IQueryDispatcher>().ImplementedBy<QueryDispatcher>().LifestyleSingleton());
-        }
-
-        private static void ConfigureCommanding(IWindsorContainer container)
-        {
-            container.Register(Component.For<ICommandFactory>().ImplementedBy<CommandFactory>().LifestyleSingleton());
-
-            container.Register(Component.For(typeof(CommandExecutor<>)).ImplementedBy(typeof(CommandExecutor<>))
-                .LifestyleCustom<MsScopedLifestyleManager>());
-            
-            container.Register(
-                Component.For<ICommandExecutorFactory>().ImplementedBy<CommandExecutorFactory>().LifestyleSingleton());
-
-            container.Register(Component.For<ICommandDispatcher>().ImplementedBy<CommandDispatcher>().LifestyleSingleton());
-        }
-
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager)
-        {
             // Show detailed errors in development environment
             if (env.IsDevelopment())
             {

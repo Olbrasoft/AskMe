@@ -5,20 +5,16 @@ using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Microsoft.EntityFrameworkCore;
-using Olbrasoft.Data.Mapping;
+using Olbrasoft.Mapping;
 using Olbrasoft.Pagination;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
 {
-    public class PagedAnsweredQuestionsQueryHandler : QueryHandler<PagedAnsweredQuestionsQuery, Question, IResultWithTotalCount<QuestionDto>>
+    public class PagedAnsweredQuestionsQueryHandler : AskQueryHandler<PagedAnsweredQuestionsQuery, IResultWithTotalCount<QuestionDto>,Question>
     {
-        public PagedAnsweredQuestionsQueryHandler(AskDbContext context, IProjection projector) : base(context, projector)
-        {
-        }
-
         public override async Task<IResultWithTotalCount<QuestionDto>> HandleAsync(PagedAnsweredQuestionsQuery query, CancellationToken token)
         {
-            var answeredQuestions = Source.Include(x => x.Category)
+            var answeredQuestions = Entities().Include(x => x.Category)
                 .Where(x => x.DateAnswered.HasValue)
                 .OrderByDescending(x => x.DateAnswered);
 
@@ -32,6 +28,11 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
             };
 
             return result;
+        }
+
+
+        public PagedAnsweredQuestionsQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        {
         }
     }
 }

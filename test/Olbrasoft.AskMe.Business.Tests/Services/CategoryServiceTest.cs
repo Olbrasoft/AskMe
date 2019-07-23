@@ -5,8 +5,8 @@ using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Business.Services;
-using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Commanding;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Tests.Services
 {
@@ -58,7 +58,7 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
 
             var dispatcherMock = new Mock<IQueryDispatcher>();
 
-            queryFactoryMock.Setup(p => p.Get<CategoriesListItemsQuery>())
+            queryFactoryMock.Setup(p => p.Create<CategoriesListItemsQuery>())
                 .Returns(new CategoriesListItemsQuery(dispatcherMock.Object));
 
             var service = new CategoryService(commandFactoryMock.Object, queryFactoryMock.Object);

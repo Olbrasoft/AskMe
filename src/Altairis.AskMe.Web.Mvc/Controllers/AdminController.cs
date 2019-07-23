@@ -31,7 +31,7 @@ namespace Altairis.AskMe.Web.Mvc.Controllers
         [Route("{questionId:int:min(1)}")]
         public async Task<IActionResult> Index(int questionId)
         {
-            // Get question
+            // Create question
             var q = await _askFacade.GetQuestionAsync(questionId);
             if (q == null) return NotFound();
 
@@ -80,30 +80,29 @@ namespace Altairis.AskMe.Web.Mvc.Controllers
         [HttpPost, Route("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordModel model)
         {
-            if (this.ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            
+            // Create current user
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            // Try to change password
+            var result = await this.userManager.ChangePasswordAsync(
+                user,
+                model.OldPassword,
+                model.NewPassword);
+
+            if (result.Succeeded)
             {
-                // Get current user
-                var user = await this.userManager.GetUserAsync(this.User);
-
-                // Try to change password
-                var result = await this.userManager.ChangePasswordAsync(
-                    user,
-                    model.OldPassword,
-                    model.NewPassword);
-
-                if (result.Succeeded)
+                // OK, re-sign and redirect to homepage
+                await this.signInManager.SignInAsync(user, isPersistent: false);
+                return this.MessageView("Změna hesla", "Vaše heslo bylo úspěšně změněno.");
+            }
+            else
+            {
+                // Failed - show why
+                foreach (var error in result.Errors)
                 {
-                    // OK, re-sign and redirect to homepage
-                    await this.signInManager.SignInAsync(user, isPersistent: false);
-                    return this.MessageView("Změna hesla", "Vaše heslo bylo úspěšně změněno.");
-                }
-                else
-                {
-                    // Failed - show why
-                    foreach (var error in result.Errors)
-                    {
-                        this.ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                    this.ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
             return this.View(model);

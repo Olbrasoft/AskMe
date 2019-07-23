@@ -1,8 +1,8 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Business.Services;
-using Olbrasoft.Data.Commanding;
-using Olbrasoft.Data.Querying;
+using Olbrasoft.Commanding;
+using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Tests.Services
 {

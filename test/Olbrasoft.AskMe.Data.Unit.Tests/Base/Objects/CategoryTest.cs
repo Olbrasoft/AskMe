@@ -1,7 +1,6 @@
 ﻿using Altairis.AskMe.Data.Base.Objects;
 using NUnit.Framework;
 
-
 namespace Olbrasoft.AskMe.Data.Unit.Tests.Base.Objects
 {
     public class CategoryTest
