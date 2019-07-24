@@ -76,6 +76,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.Entity
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.EntityFrameworkCore", "src\Olbrasoft.Commanding.EntityFrameworkCore\Olbrasoft.Commanding.EntityFrameworkCore.csproj", "{3BB79B56-7730-439F-B94B-DE244841199A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Extensions.Tests", "test\Olbrasoft.Extensions.Tests\Olbrasoft.Extensions.Tests.csproj", "{3BC3A5FE-750C-4646-B64E-1C022C6F52F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Extensions", "src\Olbrasoft.Extensions\Olbrasoft.Extensions.csproj", "{C56FF218-C8F7-4323-8C6A-AF66113D0558}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -206,6 +210,14 @@ Global
 		{3BB79B56-7730-439F-B94B-DE244841199A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BB79B56-7730-439F-B94B-DE244841199A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BB79B56-7730-439F-B94B-DE244841199A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC3A5FE-750C-4646-B64E-1C022C6F52F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BC3A5FE-750C-4646-B64E-1C022C6F52F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BC3A5FE-750C-4646-B64E-1C022C6F52F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC3A5FE-750C-4646-B64E-1C022C6F52F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C56FF218-C8F7-4323-8C6A-AF66113D0558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56FF218-C8F7-4323-8C6A-AF66113D0558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56FF218-C8F7-4323-8C6A-AF66113D0558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56FF218-C8F7-4323-8C6A-AF66113D0558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,6 +237,7 @@ Global
 		{CD913B3F-9522-4B3C-8D35-DF3AFD098362} = {739DF0CF-2588-4C19-91D5-03370005D20E}
 		{4DABEE7C-B5B0-48B3-B62A-D79C3C9C4666} = {739DF0CF-2588-4C19-91D5-03370005D20E}
 		{F3CCF48E-04B2-4669-914D-15CDFEA50F6C} = {739DF0CF-2588-4C19-91D5-03370005D20E}
+		{3BC3A5FE-750C-4646-B64E-1C022C6F52F7} = {739DF0CF-2588-4C19-91D5-03370005D20E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F57ECE7F-32E7-440B-81CD-6266928C13F6}

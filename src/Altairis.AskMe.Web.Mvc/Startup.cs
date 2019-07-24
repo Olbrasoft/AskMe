@@ -2,7 +2,6 @@
 using System.Linq;
 using Altairis.AskMe.Data.Base.Objects;
 using AutoMapper;
-using Castle.Facilities.TypedFactory;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
@@ -45,8 +44,7 @@ namespace Altairis.AskMe.Web.Mvc
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             var container = new WindsorContainer();
-            container.AddFacility<TypedFactoryFacility>();
-
+            
             services.AddDbContext<AskDbContext>(options =>
             {
                 options.UseSqlite(_config.GetConnectionString("AskDB"));
@@ -56,16 +54,10 @@ namespace Altairis.AskMe.Web.Mvc
 
             container.Register(Component.For<IProjection>().ImplementedBy<Projector>());
 
-            container.AddCommanding();
-
-            ConfigureCommands(container);
-
-            ConfigureCommandsHandlers(container);
+            container.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
             
-          
             container.AddQuering(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
-
-      
+            
             ConfigureBusiness(container);
 
             // Configure MVC
@@ -117,29 +109,8 @@ namespace Altairis.AskMe.Web.Mvc
                     .LifestyleCustom<MsScopedLifestyleManager>()
             );
         }
-
        
-
-        private static void ConfigureCommandsHandlers(IWindsorContainer container)
-        {
-            var classes = Classes.FromAssemblyNamed(typeof(AskCommandHandler<>).Assembly.GetName().Name);
-
-            container.Register(classes
-                .Where(ns => ns.Namespace != null && ns.Namespace.Contains(nameof(Olbrasoft.AskMe.Data.EntityFrameworkCore.CommandHandlers)))
-                .WithServiceFirstInterface()
-                .LifestyleCustom<MsScopedLifestyleManager>());
-        }
-
-      
-
-        private static void ConfigureCommands(IWindsorContainer container)
-        {
-            var classes = Classes.FromAssemblyNamed("Altairis.AskMe.Data");
-
-            container.Register(classes
-                .Where(type => type.Namespace != null && type.Namespace.Contains("Commands")));
-        }
-
+        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager, IMapper autoMapper)
         {
 

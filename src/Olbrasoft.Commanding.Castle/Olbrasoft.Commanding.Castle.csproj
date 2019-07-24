@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Commanding\Olbrasoft.Commanding.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Extensions\Olbrasoft.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
