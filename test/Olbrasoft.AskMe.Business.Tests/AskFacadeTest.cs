@@ -4,7 +4,7 @@ using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 
 namespace Olbrasoft.AskMe.Business.Tests
 {

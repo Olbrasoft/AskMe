@@ -1,5 +1,5 @@
 ﻿using Altairis.AskMe.Data.Transfer.Objects;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 
 namespace Altairis.AskMe.Data.Queries

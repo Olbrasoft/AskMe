@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Transfer.Objects;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 
 namespace Olbrasoft.AskMe.Business
 {

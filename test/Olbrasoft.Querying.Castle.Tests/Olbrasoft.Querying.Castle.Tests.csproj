@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Olbrasoft.Querying.Castle\Olbrasoft.Querying.Castle.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying.DependencyInjection.Castle\Olbrasoft.Querying.DependencyInjection.Castle.csproj" />
   </ItemGroup>
 
 </Project>

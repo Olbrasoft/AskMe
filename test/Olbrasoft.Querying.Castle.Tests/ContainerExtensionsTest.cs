@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Castle.MicroKernel;
 using Castle.Windsor;
 using Moq;
+using Olbrasoft.Querying.DependencyInjection.Castle;
 using Xunit;
 
 namespace Olbrasoft.Querying.Castle

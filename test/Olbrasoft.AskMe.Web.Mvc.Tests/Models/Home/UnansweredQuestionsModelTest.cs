@@ -3,7 +3,8 @@ using Altairis.AskMe.Data.Transfer.Objects;
 using Altairis.AskMe.Web.Mvc.Models.Home;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NUnit.Framework;
-using Olbrasoft.Collections.Generic;
+using Olbrasoft.Paging.X.PagedList;
+
 
 namespace Olbrasoft.AskMe.Web.Mvc.Tests.Models.Home
 {

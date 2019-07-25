@@ -6,7 +6,7 @@ using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Mapping;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers

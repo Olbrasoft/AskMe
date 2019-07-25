@@ -2,9 +2,6 @@
 using System.Linq;
 using Altairis.AskMe.Data.Base.Objects;
 using AutoMapper;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using Castle.Windsor.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,10 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Olbrasoft.AskMe.Business;
 using Olbrasoft.AskMe.Business.Services;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
-using Olbrasoft.Commanding.Castle;
+using Olbrasoft.Commanding.DependencyInjection.Microsoft;
 using Olbrasoft.Mapping;
 using Olbrasoft.Mapping.AutoMapper;
-using Olbrasoft.Querying.Castle;
+using Olbrasoft.Querying.DependencyInjection.Microsoft;
 
 namespace Altairis.AskMe.Web.Mvc
 {
@@ -41,10 +38,8 @@ namespace Altairis.AskMe.Web.Mvc
             _config = builder.Build();
         }
 
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            var container = new WindsorContainer();
-            
             services.AddDbContext<AskDbContext>(options =>
             {
                 options.UseSqlite(_config.GetConnectionString("AskDB"));
@@ -52,13 +47,13 @@ namespace Altairis.AskMe.Web.Mvc
 
             services.AddAutoMapper(typeof(Data.MapProfile<,>).Assembly);
 
-            container.Register(Component.For<IProjection>().ImplementedBy<Projector>());
+            services.AddSingleton<IProjection, Projector>();
 
-            container.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
-            
-            container.AddQuering(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
-            
-            ConfigureBusiness(container);
+            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+
+            services.AddQuering(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
+
+            ConfigureBusiness(services);
 
             // Configure MVC
             services.AddMvc(options =>
@@ -88,32 +83,19 @@ namespace Altairis.AskMe.Web.Mvc
 
             // Load configuration
             services.Configure<AppConfiguration>(_config);
-
-            return WindsorRegistrationHelper.CreateServiceProvider(container, services);
         }
 
-        private static void ConfigureBusiness(IWindsorContainer container)
+        private static void ConfigureBusiness(IServiceCollection services)
         {
-            container.Register(
-                Component.For<IQuestions>().ImplementedBy<QuestionService>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
+            services.AddScoped<IQuestions, QuestionService>();
 
-            container.Register(
-                Component.For<ICategories>().ImplementedBy<CategoryService>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
+            services.AddScoped<ICategories, CategoryService>();
 
-            container.Register(
-                Component.For<IAsk>().ImplementedBy<AskFacade>()
-                    .LifestyleCustom<MsScopedLifestyleManager>()
-            );
+            services.AddScoped<IAsk, AskFacade>();
         }
-       
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager, IMapper autoMapper)
         {
-
             autoMapper.ConfigurationProvider.AssertConfigurationIsValid();
 
             // Show detailed errors in development environment

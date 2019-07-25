@@ -6,7 +6,7 @@ using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Mapping;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
 {

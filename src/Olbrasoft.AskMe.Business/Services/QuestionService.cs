@@ -6,7 +6,7 @@ using Altairis.AskMe.Data.Commands;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Olbrasoft.Commanding;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Services

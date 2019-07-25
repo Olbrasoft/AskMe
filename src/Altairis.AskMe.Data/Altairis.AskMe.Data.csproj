@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Commanding\Olbrasoft.Commanding.csproj" />
-    <ProjectReference Include="..\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Paging\Olbrasoft.Paging.csproj" />
     <ProjectReference Include="..\Olbrasoft.Querying\Olbrasoft.Querying.csproj" />
   </ItemGroup>
 

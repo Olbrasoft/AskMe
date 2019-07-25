@@ -5,7 +5,8 @@ using Altairis.AskMe.Web.Mvc.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Olbrasoft.AskMe.Business;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
+using Olbrasoft.Paging.X.PagedList;
 
 namespace Altairis.AskMe.Web.Mvc.Controllers
 {

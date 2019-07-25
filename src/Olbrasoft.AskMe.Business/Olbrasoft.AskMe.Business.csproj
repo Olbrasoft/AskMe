@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
-    <ProjectReference Include="..\Olbrasoft.Pagination\Olbrasoft.Pagination.csproj" />
   </ItemGroup>
 
 </Project>

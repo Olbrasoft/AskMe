@@ -8,7 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Business.Services;
 using Olbrasoft.Commanding;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Tests.Services

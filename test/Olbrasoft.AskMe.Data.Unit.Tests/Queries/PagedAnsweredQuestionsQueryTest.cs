@@ -2,7 +2,7 @@
 using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
-using Olbrasoft.Pagination;
+using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Data.Unit.Tests.Queries
