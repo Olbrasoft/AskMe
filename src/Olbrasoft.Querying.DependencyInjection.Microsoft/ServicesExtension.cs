@@ -6,7 +6,7 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
 {
     public static class ServicesExtension
     {
-        public static void AddQuering(this IServiceCollection services)
+        public static void AddQueryingOnWeb(this IServiceCollection services)
         {
             services.AddSingleton<IQueryFactory, QueryFactoryWithHttpContextAccessor>();
 
@@ -17,9 +17,9 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
             services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
         }
 
-        public static void AddQuering(this IServiceCollection services, params Assembly[] assemblies)
+        public static void AddQueryingOnWeb(this IServiceCollection services, params Assembly[] assemblies)
         {
-            AddQuering(services);
+            AddQueryingOnWeb(services);
 
             foreach (var queryType in assemblies.GetQueryTypes())
             {

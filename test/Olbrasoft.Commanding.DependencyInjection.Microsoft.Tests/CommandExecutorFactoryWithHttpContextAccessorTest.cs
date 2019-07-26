@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Moq;
 using Xunit;
 
 namespace Olbrasoft.Commanding.DependencyInjection.Microsoft
 {
-    public class CommandExecutorFactoryWithServiceProviderTest
+    public class CommandExecutorFactoryWithHttpContextAccessorTest
     {
-        private readonly Mock<IServiceProvider> _providerMock = new Mock<IServiceProvider>();
+        private readonly Mock<IHttpContextAccessor> _accessorMock = new Mock<IHttpContextAccessor>();
 
         [Fact]
         public void Instance_Inherits_From_BaseQueryExecutorFactory()
@@ -22,9 +19,16 @@ namespace Olbrasoft.Commanding.DependencyInjection.Microsoft
             Assert.IsAssignableFrom(type, factory);
         }
 
-        private CommandExecutorFactoryWithServiceProvider QueryExecutorFactoryWithServiceProvider()
+        private CommandExecutorFactoryWithHttpContextAccessor QueryExecutorFactoryWithServiceProvider()
         {
-            var factory = new CommandExecutorFactoryWithServiceProvider(_providerMock.Object);
+            var contextMock = new Mock<HttpContext>();
+
+            contextMock.Setup(p => p.RequestServices).Returns(new Mock<IServiceProvider>().Object);
+
+            _accessorMock.Setup(p => p.HttpContext).Returns(contextMock.Object);
+
+
+            var factory = new CommandExecutorFactoryWithHttpContextAccessor(_accessorMock.Object);
             return factory;
         }
 
@@ -37,7 +41,8 @@ namespace Olbrasoft.Commanding.DependencyInjection.Microsoft
 
             factory.Get(executorType);
 
-            _providerMock.Verify(p => p.GetService(executorType), Times.Once);
+            _accessorMock.Verify(p=>p.HttpContext,Times.Once);
+
         }
     }
 }

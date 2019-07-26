@@ -49,9 +49,9 @@ namespace Altairis.AskMe.Web.Mvc
 
             services.AddSingleton<IProjection, Projector>();
 
-            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+            services.AddCommandingOnWeb(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
 
-            services.AddQuering(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
+            services.AddQueryingOnWeb(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
 
             ConfigureBusiness(services);
 

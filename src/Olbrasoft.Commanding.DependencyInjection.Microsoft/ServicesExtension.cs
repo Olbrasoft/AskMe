@@ -6,15 +6,15 @@ namespace Olbrasoft.Commanding.DependencyInjection.Microsoft
 {
     public static class ServicesExtension
     {
-        public static void AddCommanding(this IServiceCollection services)
+        public static void AddCommandingOnWeb(this IServiceCollection services)
         {
-            services.AddScoped<ICommandFactory, CommandFactoryWithServiceProvider>();
+            services.AddSingleton<ICommandFactory, CommandFactoryWithHttpContextAccessor>();
 
             services.AddScoped(typeof(CommandExecutor<>), typeof(CommandExecutor<>));
 
-            services.AddScoped<ICommandExecutorFactory, CommandExecutorFactoryWithServiceProvider>();
+            services.AddSingleton<ICommandExecutorFactory, CommandExecutorFactoryWithHttpContextAccessor>();
 
-            services.AddScoped<ICommandDispatcher, CommandDispatcher>();
+            services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
         }
 
         /// <summary>
@@ -22,9 +22,9 @@ namespace Olbrasoft.Commanding.DependencyInjection.Microsoft
         /// </summary>
         /// <param name="services">Microsoft DependencyInjection Collection</param>
         /// <param name="assemblies">which contain commands and command handlers</param>
-        public static void AddCommanding(this IServiceCollection services, params Assembly[] assemblies)
+        public static void AddCommandingOnWeb(this IServiceCollection services, params Assembly[] assemblies)
         {
-            AddCommanding(services);
+            AddCommandingOnWeb(services);
 
             foreach (var commandType in assemblies.GetCommandTypes())
             {

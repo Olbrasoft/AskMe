@@ -5,16 +5,16 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
 {
     public class QueryExecutorFactoryWithHttpContextAccessor : BaseQueryExecutorFactory
     {
-        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IHttpContextAccessor _accessor;
 
-        public QueryExecutorFactoryWithHttpContextAccessor(IHttpContextAccessor contextAccessor)
+        public QueryExecutorFactoryWithHttpContextAccessor(IHttpContextAccessor accessor)
         {
-            _contextAccessor = contextAccessor;
+            _accessor = accessor;
         }
 
         public override IQueryExecutor<TResult> Get<TResult>(Type executorType)
         {
-            return (IQueryExecutor<TResult>)_contextAccessor.HttpContext.RequestServices.GetService(executorType);
+            return (IQueryExecutor<TResult>)_accessor.HttpContext.RequestServices.GetService(executorType);
         }
     }
 }
