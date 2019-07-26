@@ -8,13 +8,13 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
     {
         public static void AddQuering(this IServiceCollection services)
         {
-            services.AddScoped<IQueryFactory, QueryFactoryWithServiceProvider>();
+            services.AddSingleton<IQueryFactory, QueryFactoryWithHttpContextAccessor>();
 
             services.AddScoped(typeof(QueryExecutor<,>), typeof(QueryExecutor<,>));
 
-            services.AddScoped<IQueryExecutorFactory, QueryExecutorFactoryWithServiceProvider>();
+            services.AddSingleton<IQueryExecutorFactory, QueryExecutorFactoryWithHttpContextAccessor>();
 
-            services.AddScoped<IQueryDispatcher, QueryDispatcher>();
+            services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
         }
 
         public static void AddQuering(this IServiceCollection services, params Assembly[] assemblies)
