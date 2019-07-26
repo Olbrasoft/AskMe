@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="X.PagedList.Mvc.Core" Version="7.6.0" />
+    <Compile Remove="Mvc\PagerTagHelper.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +16,14 @@
     <Reference Include="Microsoft.AspNetCore.Razor">
       <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.razor\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Razor.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mvc\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="X.PagedList" Version="7.6.0" />
   </ItemGroup>
 
 </Project>

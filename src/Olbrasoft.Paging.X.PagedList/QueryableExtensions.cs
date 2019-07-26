@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
+using X.PagedList;
 
 namespace Olbrasoft.Paging.X.PagedList
 {
     public static class QueryableExtensions
     {
         /// <summary>
-        /// Creates a <see cref="Olbrasoft.Paging.X.PagedList.PagedList{T}" /> from an <see cref="IQueryable{TSource}" /> by enumerating.
+        /// Creates a <see cref="SimplePagedList{T}" /> from an <see cref="IQueryable{TSource}" /> by enumerating.
         /// </summary>
         /// <typeparam name="TSource"> The type of the elements of <paramref name="source" />.</typeparam>
         /// <param name="source"> An <see cref="IQueryable{TSource}" /> to create a list from.</param>
@@ -23,7 +24,7 @@ namespace Olbrasoft.Paging.X.PagedList
 
             var pagedList = new global::X.PagedList.PagedList<TSource>(source, paging.NumberOfSelectedPage, paging.PageSize);
 
-            return new PagedList<TSource>(pagedList, pagedList.PageNumber, pagedList.PageSize, pagedList.TotalItemCount);
+            return new SimplePagedList<TSource>(pagedList, pagedList.PageNumber, pagedList.PageSize, pagedList.TotalItemCount);
         }
     }
 }

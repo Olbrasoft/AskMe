@@ -46,28 +46,5 @@
         </article>
     }
 
-    <div class="pager">
-        @if (!Model.UnansweredQuestions.IsFirstPage)
-        {
-            <div class="prev">
-                @if (@Model.UnansweredQuestions.PageNumber - 1 > 1)
-                {
-                    <a asp-route-pageNumber="1" class="button"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i></a>
-                }
-                <a asp-route-pageNumber="@(Model.UnansweredQuestions.PageNumber - 1)" class="button"><i class="fas fa-chevron-left"></i> Předchozí</a>
-            </div>
-        }
-        @if (Model.UnansweredQuestions.HasNextPage)
-        {
-            <div class="next">
-                <a asp-route-pageNumber="@(Model.UnansweredQuestions.PageNumber + 1)" class="button">Následující <i class="fas fa-chevron-right"></i></a>
-                @if (Model.UnansweredQuestions.PageNumber + 1 <Model.UnansweredQuestions.PageCount)
-                {
-                    <a asp-route-pageNumber="@Model.UnansweredQuestions.PageCount" class="button"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></a>
-                }
-            </div>
-        }
-        <p>Strana @Model.UnansweredQuestions.PageNumber z @Model.UnansweredQuestions.PageCount, celkem @Model.UnansweredQuestions.TotalItemCount položek.</p>
-    </div>
-    @*<vc:pager model="Model.Paging"></vc:pager>*@
+    <vc:pager model="Model.UnansweredQuestions"></vc:pager>
 }

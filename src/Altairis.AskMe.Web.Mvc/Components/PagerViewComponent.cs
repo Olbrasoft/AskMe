@@ -1,10 +1,10 @@
-﻿using Altairis.AskMe.Web.Mvc.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
-namespace Altairis.AskMe.Web.Mvc.Components {
-    public class PagerViewComponent : ViewComponent {
-
-        public IViewComponentResult Invoke(PagingInfo model) => View(model);
-
+namespace Altairis.AskMe.Web.Mvc.Components
+{
+    public class PagerViewComponent : ViewComponent
+    {
+        public IViewComponentResult Invoke(IPagedList model) => View(model);
     }
 }

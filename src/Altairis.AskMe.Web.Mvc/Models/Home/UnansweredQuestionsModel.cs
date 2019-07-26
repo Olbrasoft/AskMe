@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Olbrasoft.Paging.X.PagedList;
+using X.PagedList;
 
 
 namespace Altairis.AskMe.Web.Mvc.Models.Home

@@ -94,9 +94,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.Depend
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.DependencyInjection.Castle.Tests", "test\Olbrasoft.Commanding.DependencyInjection.Castle.Tests\Olbrasoft.Commanding.DependencyInjection.Castle.Tests.csproj", "{F14F858F-0F16-4E91-8D0A-03B51DF645BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests", "test\Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests\Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests.csproj", "{D8DB5E28-3E5B-45CB-BF09-34E5E3DAE0EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests", "test\Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests\Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests.csproj", "{D8DB5E28-3E5B-45CB-BF09-34E5E3DAE0EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.DependencyInjection.Microsoft", "src\Olbrasoft.Commanding.DependencyInjection.Microsoft\Olbrasoft.Commanding.DependencyInjection.Microsoft.csproj", "{B269479C-1BEF-4454-8EBE-094CC3AA441C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.DependencyInjection.Microsoft", "src\Olbrasoft.Commanding.DependencyInjection.Microsoft\Olbrasoft.Commanding.DependencyInjection.Microsoft.csproj", "{B269479C-1BEF-4454-8EBE-094CC3AA441C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

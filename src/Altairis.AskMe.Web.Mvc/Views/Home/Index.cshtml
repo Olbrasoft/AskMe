@@ -1,4 +1,6 @@
-﻿@model Olbrasoft.Paging.X.PagedList.IPagedList<Altairis.AskMe.Data.Transfer.Objects.QuestionDto>
+﻿@model X.PagedList.IPagedList<Altairis.AskMe.Data.Transfer.Objects.QuestionDto>
+@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
+
 
 @foreach (var item in Model)
 {
@@ -39,28 +41,9 @@
     </article>
 }
 
-<div class="pager">
-    @if (!Model.IsFirstPage)
-    {
-        <div class="prev">
-            @if (@Model.PageNumber - 1 > 1)
-            {
-                <a asp-route-pageNumber="1" class="button"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-left"></i></a>
-            }
-            <a asp-route-pageNumber="@(Model.PageNumber - 1)" class="button"><i class="fas fa-chevron-left"></i> Předchozí</a>
-        </div>
-    }
-    @if (Model.HasNextPage)
-    {
-        <div class="next">
-            <a asp-route-pageNumber="@(Model.PageNumber + 1)" class="button">Následující <i class="fas fa-chevron-right"></i></a>
-            @if (Model.PageNumber + 1 < Model.PageCount)
-            {
-                <a asp-route-pageNumber="@Model.PageCount" class="button"><i class="fas fa-chevron-right"></i><i class="fas fa-chevron-right"></i></a>
-            }
-        </div>
-    }
-    <p>Strana @Model.PageNumber z @Model.PageCount, celkem @Model.TotalItemCount položek.</p>
-</div>
 
-@*<vc:pager model="Model.Paging"></vc:pager>*@
+<vc:pager model="Model"></vc:pager>
+
+@*Viz https://github.com/dncuug/X.PagedList/blob/master/examples/X.PagedList.Mvc.Example.Core/Views/Home/Index.cshtml*@
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

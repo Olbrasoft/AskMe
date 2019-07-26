@@ -1,4 +1,5 @@
 ﻿using System;
+using X.PagedList;
 
 namespace Olbrasoft.Paging.X.PagedList
 {
@@ -9,7 +10,7 @@ namespace Olbrasoft.Paging.X.PagedList
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (pageInfo == null) throw new ArgumentNullException(nameof(pageInfo));
 
-            return new PagedList<T>(source.Result, pageInfo.NumberOfSelectedPage, pageInfo.PageSize, source.TotalCount);
+            return new SimplePagedList<T>(source.Result, pageInfo.NumberOfSelectedPage, pageInfo.PageSize, source.TotalCount);
         }
     }
 }

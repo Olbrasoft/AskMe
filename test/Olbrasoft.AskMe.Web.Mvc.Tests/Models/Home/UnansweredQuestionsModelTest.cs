@@ -4,6 +4,7 @@ using Altairis.AskMe.Web.Mvc.Models.Home;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NUnit.Framework;
 using Olbrasoft.Paging.X.PagedList;
+using X.PagedList;
 
 
 namespace Olbrasoft.AskMe.Web.Mvc.Tests.Models.Home
@@ -29,7 +30,7 @@ namespace Olbrasoft.AskMe.Web.Mvc.Tests.Models.Home
         public void UnansweredQuestions()
         {
             //Arrange
-            IPagedList<UnansweredQuestionDto> questions = new PagedList<UnansweredQuestionDto>(new List<UnansweredQuestionDto>(),1,1,1 );
+            IPagedList<UnansweredQuestionDto> questions = new SimplePagedList<UnansweredQuestionDto>(new List<UnansweredQuestionDto>(),1,1,1 );
             var model = UnansweredQuestionsModel();
 
             //Act

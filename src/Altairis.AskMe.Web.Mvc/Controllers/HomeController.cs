@@ -27,6 +27,8 @@ namespace Altairis.AskMe.Web.Mvc.Controllers
             var pageInfo = new PageInfo(10, pageNumber);
             var answeredQuestions = await _askFacade.GetAnsweredQuestionsAsync(pageInfo);
 
+           
+
             return View(answeredQuestions.AsPagedList(pageInfo));
         }
 
