@@ -31,7 +31,7 @@ namespace Olbrasoft.Querying
             var resultType = typeof(TResult);
 
 
-            var a = ExecutorFactory.Get<TResult>(typeof(QueryExecutor<,>).MakeGenericType(queryType, resultType));
+            var a = ExecutorFactory.CreateExecutor<TResult>(typeof(QueryExecutor<,>).MakeGenericType(queryType, resultType));
 
             return a;
         }

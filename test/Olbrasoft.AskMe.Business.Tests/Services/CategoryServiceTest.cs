@@ -58,7 +58,7 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
 
             var dispatcherMock = new Mock<IQueryDispatcher>();
 
-            queryFactoryMock.Setup(p => p.Create<CategoriesListItemsQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<CategoriesListItemsQuery>())
                 .Returns(new CategoriesListItemsQuery(dispatcherMock.Object));
 
             var service = new CategoryService(commandFactoryMock.Object, queryFactoryMock.Object);

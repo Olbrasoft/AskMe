@@ -45,13 +45,13 @@ namespace Altairis.AskMe.Web.Mvc
                 options.UseSqlite(_config.GetConnectionString("AskDB"));
             });
 
-            services.AddAutoMapper(typeof(Data.MapProfile<,>).Assembly);
+            services.AddAutoMapper(typeof(Data.Transfer.Objects.QuestionDto).Assembly);
 
             services.AddSingleton<IProjection, Projector>();
 
             services.AddCommandingOnWeb(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
 
-            services.AddQueryingOnWeb(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
+            services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
 
             ConfigureBusiness(services);
 

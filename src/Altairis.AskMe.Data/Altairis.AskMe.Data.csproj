@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mapping\**" />
+    <EmbeddedResource Remove="Mapping\**" />
+    <None Remove="Mapping\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Commanding\Olbrasoft.Commanding.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj" />
     <ProjectReference Include="..\Olbrasoft.Paging\Olbrasoft.Paging.csproj" />
     <ProjectReference Include="..\Olbrasoft.Querying\Olbrasoft.Querying.csproj" />
   </ItemGroup>

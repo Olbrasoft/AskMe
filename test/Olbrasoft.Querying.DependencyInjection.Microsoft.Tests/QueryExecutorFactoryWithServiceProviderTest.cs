@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xunit;
@@ -8,9 +7,7 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
 {
     public class QueryExecutorFactoryWithServiceProviderTest
     {
-        //private readonly Mock<IServiceProvider> _providerMock = new Mock<IServiceProvider>();
-        private readonly Mock<IServiceProvider> _providerMock = new Mock<IServiceProvider>();
-
+        private readonly Mock<IServiceScopeFactory> _factoryMock = new Mock<IServiceScopeFactory>();
 
         [Fact]
         public void Instance_Inherits_From_BaseQueryExecutorFactory()
@@ -22,15 +19,15 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
             Assert.IsAssignableFrom(type, factory);
         }
 
-        private QueryExecutorFactoryWithServiceProvider QueryExecutorFactoryWithServiceProvider()
+        private QueryExecutorFactoryWithServiceScopeFactory QueryExecutorFactoryWithServiceProvider()
         {
             var scopeMock = new Mock<IServiceScope>();
 
             scopeMock.Setup(p => p.ServiceProvider).Returns(new Mock<IServiceProvider>().Object);
 
-            
-            
-            var factory = new QueryExecutorFactoryWithServiceProvider(_providerMock.Object);
+            _factoryMock.Setup(p => p.CreateScope()).Returns(scopeMock.Object);
+
+            var factory = new QueryExecutorFactoryWithServiceScopeFactory(_factoryMock.Object);
             return factory;
         }
 
@@ -41,11 +38,9 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
 
             var executorType = typeof(QueryExecutor<Query<bool>, bool>);
 
-         //   factory.Get<bool>(executorType);
+            factory.CreateExecutor<bool>(executorType);
 
-           // _providerMock.Verify(p=>p.CreateScope(), Times.Once);
+            _factoryMock.Verify(p => p.CreateScope(), Times.Once);
         }
     }
-
-   
 }

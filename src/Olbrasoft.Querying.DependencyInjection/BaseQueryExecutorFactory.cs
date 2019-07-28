@@ -4,6 +4,6 @@ namespace Olbrasoft.Querying.DependencyInjection
 {
     public abstract class BaseQueryExecutorFactory :IQueryExecutorFactory
     {
-        public abstract IQueryExecutor<TResult> Get<TResult>(Type executorType);
+        public abstract IQueryExecutor<TResult> CreateExecutor<TResult>(Type executorType);
     }
 }

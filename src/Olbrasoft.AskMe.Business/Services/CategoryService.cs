@@ -16,7 +16,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IEnumerable<CategoryListItemDto>> GetAsync(CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Create<CategoriesListItemsQuery>();
+            var query = QueryFactory.CreateQuery<CategoriesListItemsQuery>();
 
             return query.ExecuteAsync(cancellationToken);
         }

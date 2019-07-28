@@ -52,7 +52,7 @@ namespace Olbrasoft.Querying
             executorMock.Setup(p => p.Execute(It.IsAny<Query<bool>>())).Returns(true);
             executorMock.Setup(p => p.ExecuteAsync(It.IsAny<Query<bool>>(), default)).Returns(Task.FromResult(true));
 
-            executorFactoryMock.Setup(p => p.Get<bool>(typeof(QueryExecutor<Query<bool>, bool>)))
+            executorFactoryMock.Setup(p => p.CreateExecutor<bool>(typeof(QueryExecutor<Query<bool>, bool>)))
                 .Returns( executorMock.Object);
 
             var dispatcher = new QueryDispatcher(executorFactoryMock.Object);

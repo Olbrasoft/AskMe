@@ -147,19 +147,19 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
             commandFactoryMock.Setup(p => p.Create<UpdateQuestionCommand>())
                 .Returns(new UpdateQuestionCommand(dispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Create<SyndicationQuestionsQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<SyndicationQuestionsQuery>())
                 .Returns(new SyndicationQuestionsQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Create<PagedAnsweredQuestionsQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<PagedAnsweredQuestionsQuery>())
                 .Returns(new PagedAnsweredQuestionsQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Create<PagedUnansweredQuestionsQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<PagedUnansweredQuestionsQuery>())
                 .Returns(new PagedUnansweredQuestionsQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Create<QuestionByIdQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<QuestionByIdQuery>())
                 .Returns(new QuestionByIdQuery(queryDispatcherMock.Object));
 
-            queryFactoryMock.Setup(p => p.Create<ExistQuestionQuery>())
+            queryFactoryMock.Setup(p => p.CreateQuery<ExistQuestionQuery>())
                 .Returns(new ExistQuestionQuery(queryDispatcherMock.Object));
 
             var service = new QuestionService(commandFactoryMock.Object, queryFactoryMock.Object);

@@ -13,7 +13,7 @@ namespace Olbrasoft.AskMe.Data.Unit.Tests.Mapping.Profiles
             var type = typeof(Profile);
 
             //Act
-            var profile = new QuestionToAnsweredQuestionDtoProfile();
+            var profile = new QuestionToQuestionDtoProfile();
 
             //Assert
             Assert.IsInstanceOf(type, profile);

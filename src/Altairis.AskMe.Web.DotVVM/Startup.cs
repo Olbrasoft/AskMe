@@ -78,10 +78,10 @@ namespace Altairis.AskMe.Web.DotVVM {
 
             // Seed initial data if in development environment
             if (env.IsDevelopment()) {
-                // Create categories
+                // CreateQuery categories
                 context.Seed();
 
-                // Create default user
+                // CreateQuery default user
                 if (!userManager.Users.Any()) {
                     var adminUser = new ApplicationUser { UserName = "admin" };
                     var r = userManager.CreateAsync(adminUser, "pass.word123").Result;

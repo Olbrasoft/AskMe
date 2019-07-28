@@ -1,7 +1,10 @@
 ﻿using System;
+using Altairis.AskMe.Data.Base.Objects;
+using AutoMapper;
 
 namespace Altairis.AskMe.Data.Transfer.Objects
 {
+    [AutoMap(typeof(Question), IncludeAllDerived = true)]
     public class UnansweredQuestionDto
     {
         public int Id { get; set; }

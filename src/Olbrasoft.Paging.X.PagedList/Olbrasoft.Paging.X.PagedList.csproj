@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Mvc\PagerTagHelper.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Olbrasoft.Paging\Olbrasoft.Paging.csproj" />
   </ItemGroup>
 
@@ -16,10 +12,6 @@
     <Reference Include="Microsoft.AspNetCore.Razor">
       <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.razor\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Razor.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mvc\" />
   </ItemGroup>
 
   <ItemGroup>

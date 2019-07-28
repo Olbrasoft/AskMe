@@ -12,7 +12,7 @@ namespace Olbrasoft.Querying.DependencyInjection.Castle
             _container = container;
         }
         
-        public override IQueryExecutor<TResult> Get<TResult>(Type executorType)
+        public override IQueryExecutor<TResult> CreateExecutor<TResult>(Type executorType)
         {
             return (IQueryExecutor<TResult>)_container.Resolve(executorType);
     

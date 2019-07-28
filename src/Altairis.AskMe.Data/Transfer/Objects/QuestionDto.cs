@@ -7,7 +7,5 @@ namespace Altairis.AskMe.Data.Transfer.Objects
         public DateTime DateAnswered { get; set; }
 
         public string AnswerText { get; set; }
-        
-       
     }
 }

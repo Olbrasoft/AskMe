@@ -2,6 +2,6 @@
 {
     public abstract class BaseQueryFactory : IQueryFactory
     {
-        public abstract T Create<T>() where T : IQuery;
+        public abstract T CreateQuery<T>() where T : IQuery;
     }
 }

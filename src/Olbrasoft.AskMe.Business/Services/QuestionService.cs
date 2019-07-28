@@ -19,7 +19,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<QuestionDto> GetAsync(int id, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Create<QuestionByIdQuery>();
+            var query = QueryFactory.CreateQuery<QuestionByIdQuery>();
             query.QuestionId = id;
 
             return query.ExecuteAsync(cancellationToken);
@@ -27,7 +27,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IResultWithTotalCount<QuestionDto>> GetAnsweredAsync(IPageInfo pagingSettings, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Create<PagedAnsweredQuestionsQuery>();
+            var query = QueryFactory.CreateQuery<PagedAnsweredQuestionsQuery>();
             query.Paging = pagingSettings;
 
             return query.ExecuteAsync(cancellationToken);
@@ -35,7 +35,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IResultWithTotalCount<UnansweredQuestionDto>> GetUnansweredAsync(IPageInfo pagingSettings, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.Create<PagedUnansweredQuestionsQuery>();
+            var query = QueryFactory.CreateQuery<PagedUnansweredQuestionsQuery>();
             query.Paging = pagingSettings;
 
             return query.ExecuteAsync(cancellationToken);
@@ -51,7 +51,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IEnumerable<SyndicationQuestionDto>> GetSyndicationsAsync(int take, CancellationToken token = default)
         {
-            var query = QueryFactory.Create<SyndicationQuestionsQuery>();
+            var query = QueryFactory.CreateQuery<SyndicationQuestionsQuery>();
             query.Take = take;
 
             return query.ExecuteAsync(token);
@@ -70,7 +70,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<bool> ExistAsync(int id, CancellationToken token = default)
         {
-            var query = QueryFactory.Create<ExistQuestionQuery>();
+            var query = QueryFactory.CreateQuery<ExistQuestionQuery>();
             query.QuestionId = id;
 
             return query.ExecuteAsync(token);

@@ -54,7 +54,7 @@ namespace Altairis.AskMe.Web.DotVVM.ViewModels {
                 .ProjectTo<UnansweredQuestionDto>();
 
         public async Task SubmitQuestion() {
-            // Create and save question entity
+            // CreateQuery and save question entity
             var nq = new Question {
                 QuestionText = this.Input.QuestionText,
                 CategoryId = this.Input.CategoryId,

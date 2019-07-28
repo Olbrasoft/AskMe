@@ -4,6 +4,6 @@ namespace Olbrasoft.Querying
 {
     public interface IQueryExecutorFactory
     {
-        IQueryExecutor<TResult> Get<TResult>(Type executorType);
+        IQueryExecutor<TResult> CreateExecutor<TResult>(Type executorType);
     }
 }

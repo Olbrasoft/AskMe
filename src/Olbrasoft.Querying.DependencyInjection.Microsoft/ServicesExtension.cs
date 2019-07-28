@@ -6,20 +6,20 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
 {
     public static class ServicesExtension
     {
-        public static void AddQueryingOnWeb(this IServiceCollection services)
+        public static void AddQuerying(this IServiceCollection services)
         {
-            services.AddSingleton<IQueryFactory, QueryFactoryWithServiceProvider>();
+            services.AddSingleton<IQueryFactory, QueryFactoryWithServiceScopeFactory>();
 
             services.AddScoped(typeof(QueryExecutor<,>), typeof(QueryExecutor<,>));
 
-            services.AddSingleton<IQueryExecutorFactory, QueryExecutorFactoryWithServiceProvider>();
+            services.AddSingleton<IQueryExecutorFactory, QueryExecutorFactoryWithServiceScopeFactory>();
 
             services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
         }
 
-        public static void AddQueryingOnWeb(this IServiceCollection services, params Assembly[] assemblies)
+        public static void AddQuerying(this IServiceCollection services, params Assembly[] assemblies)
         {
-            AddQueryingOnWeb(services);
+            AddQuerying(services);
 
             foreach (var queryType in assemblies.GetQueryTypes())
             {

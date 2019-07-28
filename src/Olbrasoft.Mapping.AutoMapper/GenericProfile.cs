@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 
-namespace Altairis.AskMe.Data
+namespace Olbrasoft.Mapping.AutoMapper
 {
-    public abstract class MapProfile<TSource, TDestination> : Profile
+    public abstract class GenericProfile<TSource, TDestination> : Profile
     {
         protected IMappingExpression<TSource, TDestination> Expression;
 
-        protected MapProfile()
+        protected GenericProfile()
         {
             Expression = CreateMap<TSource, TDestination>();
         }
