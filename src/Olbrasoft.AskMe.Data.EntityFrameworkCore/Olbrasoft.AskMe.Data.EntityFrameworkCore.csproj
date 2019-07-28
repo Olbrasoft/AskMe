@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
-    <ProjectReference Include="..\Altairis.AskMe.Web.RazorPages\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
     <ProjectReference Include="..\Olbrasoft.Commanding.EntityFrameworkCore\Olbrasoft.Commanding.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Olbrasoft.Querying.EntityFrameworkCore\Olbrasoft.Querying.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Olbrasoft.Querying.Mapping.EntityFrameworkCore\Olbrasoft.Querying.Mapping.EntityFrameworkCore.csproj" />

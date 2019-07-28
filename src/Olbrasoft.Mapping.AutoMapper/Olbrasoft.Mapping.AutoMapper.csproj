@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Altairis.AskMe.Web.RazorPages\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
   </ItemGroup>
 
 </Project>

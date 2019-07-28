@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Altairis.AskMe.Web.RazorPages\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
     <ProjectReference Include="..\..\src\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj" />
   </ItemGroup>
 
 </Project>

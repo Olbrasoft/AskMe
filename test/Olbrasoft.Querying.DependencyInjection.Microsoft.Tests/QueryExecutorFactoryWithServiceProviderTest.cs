@@ -1,14 +1,16 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xunit;
 
 namespace Olbrasoft.Querying.DependencyInjection.Microsoft
 {
-    public class QueryExecutorFactoryWithHttpContextAccessorTest
+    public class QueryExecutorFactoryWithServiceProviderTest
     {
         //private readonly Mock<IServiceProvider> _providerMock = new Mock<IServiceProvider>();
-        private readonly Mock<IHttpContextAccessor> _accessorMock = new Mock<IHttpContextAccessor>();
+        private readonly Mock<IServiceProvider> _providerMock = new Mock<IServiceProvider>();
+
 
         [Fact]
         public void Instance_Inherits_From_BaseQueryExecutorFactory()
@@ -20,15 +22,15 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
             Assert.IsAssignableFrom(type, factory);
         }
 
-        private QueryExecutorFactoryWithHttpContextAccessor QueryExecutorFactoryWithServiceProvider()
+        private QueryExecutorFactoryWithServiceProvider QueryExecutorFactoryWithServiceProvider()
         {
-            var httpMOck = new Mock<HttpContext>();
+            var scopeMock = new Mock<IServiceScope>();
 
-            httpMOck.Setup(p => p.RequestServices).Returns(new Mock<IServiceProvider>().Object);
+            scopeMock.Setup(p => p.ServiceProvider).Returns(new Mock<IServiceProvider>().Object);
+
             
-            _accessorMock.Setup(p => p.HttpContext).Returns(httpMOck.Object);
-
-            var factory = new QueryExecutorFactoryWithHttpContextAccessor(_accessorMock.Object);
+            
+            var factory = new QueryExecutorFactoryWithServiceProvider(_providerMock.Object);
             return factory;
         }
 
@@ -39,9 +41,9 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
 
             var executorType = typeof(QueryExecutor<Query<bool>, bool>);
 
-            factory.Get<bool>(executorType);
+         //   factory.Get<bool>(executorType);
 
-            _accessorMock.Verify(p=>p.HttpContext, Times.Once);
+           // _providerMock.Verify(p=>p.CreateScope(), Times.Once);
         }
     }
 

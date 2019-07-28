@@ -44,8 +44,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Querying.Castle.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.Castle", "src\Olbrasoft.Commanding.Castle\Olbrasoft.Commanding.Castle.csproj", "{5AFFBCAA-655F-40FA-97DB-30CD23296848}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Mapping", "src\Altairis.AskMe.Web.RazorPages\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj", "{2DEF3D9C-0A92-4F9B-ABE4-0706FFBD84F4}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Mapping.AutoMapper", "src\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj", "{2094EE4D-C2B2-44E7-8A22-EC1FC5580208}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Mapping.AutoMapper.Tests", "test\Olbrasoft.Mapping.AutoMapper.Tests\Olbrasoft.Mapping.AutoMapper.Tests.csproj", "{59927DE2-4C5C-4AB7-8EFE-8F6BCE6AF063}"
@@ -97,6 +95,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests", "test\Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests\Olbrasoft.Commanding.DependencyInjection.Microsoft.Tests.csproj", "{D8DB5E28-3E5B-45CB-BF09-34E5E3DAE0EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.DependencyInjection.Microsoft", "src\Olbrasoft.Commanding.DependencyInjection.Microsoft\Olbrasoft.Commanding.DependencyInjection.Microsoft.csproj", "{B269479C-1BEF-4454-8EBE-094CC3AA441C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Mapping", "src\Olbrasoft.Mapping\Olbrasoft.Mapping.csproj", "{A7C3B478-7AB2-48E8-8A48-444B810E813D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -164,10 +164,6 @@ Global
 		{5AFFBCAA-655F-40FA-97DB-30CD23296848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AFFBCAA-655F-40FA-97DB-30CD23296848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AFFBCAA-655F-40FA-97DB-30CD23296848}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DEF3D9C-0A92-4F9B-ABE4-0706FFBD84F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DEF3D9C-0A92-4F9B-ABE4-0706FFBD84F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DEF3D9C-0A92-4F9B-ABE4-0706FFBD84F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DEF3D9C-0A92-4F9B-ABE4-0706FFBD84F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2094EE4D-C2B2-44E7-8A22-EC1FC5580208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2094EE4D-C2B2-44E7-8A22-EC1FC5580208}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2094EE4D-C2B2-44E7-8A22-EC1FC5580208}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -272,6 +268,10 @@ Global
 		{B269479C-1BEF-4454-8EBE-094CC3AA441C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B269479C-1BEF-4454-8EBE-094CC3AA441C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B269479C-1BEF-4454-8EBE-094CC3AA441C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7C3B478-7AB2-48E8-8A48-444B810E813D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C3B478-7AB2-48E8-8A48-444B810E813D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C3B478-7AB2-48E8-8A48-444B810E813D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C3B478-7AB2-48E8-8A48-444B810E813D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

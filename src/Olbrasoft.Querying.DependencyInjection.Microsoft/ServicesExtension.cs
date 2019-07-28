@@ -8,11 +8,11 @@ namespace Olbrasoft.Querying.DependencyInjection.Microsoft
     {
         public static void AddQueryingOnWeb(this IServiceCollection services)
         {
-            services.AddSingleton<IQueryFactory, QueryFactoryWithHttpContextAccessor>();
+            services.AddSingleton<IQueryFactory, QueryFactoryWithServiceProvider>();
 
             services.AddScoped(typeof(QueryExecutor<,>), typeof(QueryExecutor<,>));
 
-            services.AddSingleton<IQueryExecutorFactory, QueryExecutorFactoryWithHttpContextAccessor>();
+            services.AddSingleton<IQueryExecutorFactory, QueryExecutorFactoryWithServiceProvider>();
 
             services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
         }
