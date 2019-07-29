@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Olbrasoft.AskMe.Business;
+using Olbrasoft.AskMe.Business.DependencyInjection.Microsoft;
 using Olbrasoft.AskMe.Business.Services;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 using Olbrasoft.Commanding.DependencyInjection.Microsoft;
@@ -49,11 +50,11 @@ namespace Altairis.AskMe.Web.Mvc
 
             services.AddSingleton<IProjection, Projector>();
 
-            services.AddCommandingOnWeb(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
 
             services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
 
-            ConfigureBusiness(services);
+            services.AddBusiness();
 
             // Configure MVC
             services.AddMvc(options =>
@@ -85,15 +86,7 @@ namespace Altairis.AskMe.Web.Mvc
             services.Configure<AppConfiguration>(_config);
         }
 
-        private static void ConfigureBusiness(IServiceCollection services)
-        {
-            services.AddScoped<IQuestions, QuestionService>();
-
-            services.AddScoped<ICategories, CategoryService>();
-
-            services.AddScoped<IAsk, AskFacade>();
-        }
-
+       
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager, IMapper autoMapper)
         {
             autoMapper.ConfigurationProvider.AssertConfigurationIsValid();

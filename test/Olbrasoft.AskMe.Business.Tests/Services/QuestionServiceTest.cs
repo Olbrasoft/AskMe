@@ -141,10 +141,10 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
             var commandFactoryMock = new Mock<ICommandFactory>();
             var queryFactoryMock = new Mock<IQueryFactory>();
 
-            commandFactoryMock.Setup(p => p.Create<InsertQuestionCommand>())
+            commandFactoryMock.Setup(p => p.CreateCommand<InsertQuestionCommand>())
                 .Returns(new InsertQuestionCommand(dispatcherMock.Object));
 
-            commandFactoryMock.Setup(p => p.Create<UpdateQuestionCommand>())
+            commandFactoryMock.Setup(p => p.CreateCommand<UpdateQuestionCommand>())
                 .Returns(new UpdateQuestionCommand(dispatcherMock.Object));
 
             queryFactoryMock.Setup(p => p.CreateQuery<SyndicationQuestionsQuery>())

@@ -39,6 +39,9 @@ namespace Altairis.AskMe.Web.RazorPages {
                     options.Conventions.AuthorizeFolder("/Admin");
                 });
 
+
+
+
             // Configure identity and authentication
             services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
                 options.Password.RequiredLength = 12;

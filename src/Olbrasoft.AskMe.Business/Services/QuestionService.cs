@@ -43,7 +43,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task AddAsync(Question question, CancellationToken token = default)
         {
-            var command = CommandFactory.Create<InsertQuestionCommand>();
+            var command = CommandFactory.CreateCommand<InsertQuestionCommand>();
             command.Data = question;
 
             return command.ExecuteAsync(token);
@@ -59,7 +59,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task EditAsync(QuestionDto question, out bool notFound ,CancellationToken token = default)
         {
-            var command = CommandFactory.Create<UpdateQuestionCommand>();
+            var command = CommandFactory.CreateCommand<UpdateQuestionCommand>();
             command.Data = question;
             var result = command.ExecuteAsync(token);
             notFound = command.NotFound;

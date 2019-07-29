@@ -24,7 +24,7 @@ namespace Olbrasoft.Commanding
 
         private ICommandExecutor Executor(ICommand command)
         {
-           return ExecutorFactory.Get(typeof(CommandExecutor<>).MakeGenericType(command.GetType()));
+           return ExecutorFactory.CreateExecutor(typeof(CommandExecutor<>).MakeGenericType(command.GetType()));
         }
     }
 }

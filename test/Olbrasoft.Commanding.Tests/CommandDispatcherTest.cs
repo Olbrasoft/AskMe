@@ -19,7 +19,7 @@ namespace Olbrasoft.Commanding
         private static CommandDispatcher CommandDispatcher()
         {
             var factoryMock = new Mock<ICommandExecutorFactory>();
-            factoryMock.Setup(p => p.Get(typeof(CommandExecutor<Command<bool>>)))
+            factoryMock.Setup(p => p.CreateExecutor(typeof(CommandExecutor<Command<bool>>)))
                 .Returns(new Mock<ICommandExecutor>().Object);
 
             var dispatcher = new CommandDispatcher(factoryMock.Object);

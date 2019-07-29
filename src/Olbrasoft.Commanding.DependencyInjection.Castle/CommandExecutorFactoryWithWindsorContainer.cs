@@ -12,7 +12,7 @@ namespace Olbrasoft.Commanding.DependencyInjection.Castle
             _container = container;
         }
 
-        public override ICommandExecutor Get(Type executorType)
+        public override ICommandExecutor CreateExecutor(Type executorType)
         {
             return (ICommandExecutor)_container.Resolve(executorType);
         }

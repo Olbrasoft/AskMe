@@ -4,6 +4,6 @@ namespace Olbrasoft.Commanding
 {
     public interface ICommandExecutorFactory
     {
-        ICommandExecutor Get(Type executorType);
+        ICommandExecutor CreateExecutor(Type executor);
     }
 }
