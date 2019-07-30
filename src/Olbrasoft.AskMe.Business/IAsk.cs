@@ -18,6 +18,8 @@ namespace Olbrasoft.AskMe.Business
 
         Task AddAsync(Question question);
 
+        Task AddAsync(InputQuestionDto question,out int questionId);
+
         Task EditAsync(QuestionDto question, out bool notFound );
 
         Task<bool> ExistQuestionAsync(int questionId);

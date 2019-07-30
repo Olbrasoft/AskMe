@@ -45,7 +45,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         private static CategoriesListItemsQueryHandler CategoriesListItemsQueryHandler()
         {
             var contextMock = new Mock<AskDbContext>();
-           var projectorMock= new Mock<IProjection>();
+           var projectorMock= new Mock<IProjector>();
 
             var handler = new CategoriesListItemsQueryHandler(projectorMock.Object,contextMock.Object);
             return handler;

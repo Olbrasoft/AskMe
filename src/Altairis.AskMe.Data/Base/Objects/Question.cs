@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Altairis.AskMe.Data.Base.Objects
 {
-    public class Question {
-
+    public class Question
+    {
         [Key]
         public int Id { get; set; }
 
@@ -29,6 +29,5 @@ namespace Altairis.AskMe.Data.Base.Objects
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
-
     }
 }

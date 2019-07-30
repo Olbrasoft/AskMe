@@ -31,7 +31,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
         }
 
 
-        public PagedAnsweredQuestionsQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        public PagedAnsweredQuestionsQueryHandler(IProjector projector, AskDbContext context) : base(projector, context)
         {
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Altairis.AskMe.Data.Base.Objects;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +9,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Olbrasoft.AskMe.Business.DependencyInjection.Microsoft;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Olbrasoft.Commanding.DependencyInjection.Microsoft;
+using Olbrasoft.Mapping;
+using Olbrasoft.Mapping.AutoMapper;
+using Olbrasoft.Querying.DependencyInjection.Microsoft;
 
 namespace Altairis.AskMe.Web.RazorPages {
     public class Startup {
@@ -33,14 +39,22 @@ namespace Altairis.AskMe.Web.RazorPages {
                 options.UseSqlite(this._config.GetConnectionString("AskDB"));
             });
 
+
+            services.AddAutoMapper(typeof(Data.Transfer.Objects.QuestionDto).Assembly);
+
+            services.AddSingleton<IProjector, Projector>();
+
+            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+
+            services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
+
+            services.AddBusiness();
+
             // Configure Razor Pages
             services.AddMvc()
                 .AddRazorPagesOptions(options => {
                     options.Conventions.AuthorizeFolder("/Admin");
                 });
-
-
-
 
             // Configure identity and authentication
             services.AddIdentity<ApplicationUser, ApplicationRole>(options => {

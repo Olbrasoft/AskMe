@@ -8,7 +8,7 @@ namespace Olbrasoft.Querying.Mapping.EntityFrameworkCore
     {
         protected TDbContext Context;
 
-        protected QueryHandlerWithProjectorAndDbContext(IProjection projector, TDbContext context) : base(projector)
+        protected QueryHandlerWithProjectorAndDbContext(IProjector projector, TDbContext context) : base(projector)
         {
             Context = context;
         }

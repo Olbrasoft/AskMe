@@ -23,6 +23,8 @@ namespace Olbrasoft.AskMe.Business
 
         Task AddAsync(Question question, CancellationToken token = default);
 
+        Task AddAsync(InputQuestionDto question,out int questionId, CancellationToken token = default);
+
         Task<IEnumerable<SyndicationQuestionDto>> GetSyndicationsAsync(int take, CancellationToken token = default);
 
         Task EditAsync(QuestionDto question, out bool notFound , CancellationToken token = default);

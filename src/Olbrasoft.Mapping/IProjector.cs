@@ -2,7 +2,7 @@
 
 namespace Olbrasoft.Mapping
 {
-    public interface IProjection
+    public interface IProjector
     {
         IQueryable<TDestination> ProjectTo<TDestination>(IQueryable source);
     }

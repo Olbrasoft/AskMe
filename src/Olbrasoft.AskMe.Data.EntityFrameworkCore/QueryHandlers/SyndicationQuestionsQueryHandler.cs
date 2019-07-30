@@ -22,7 +22,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
             return await ProjectTo<SyndicationQuestionDto>(q).ToArrayAsync(token);
         }
 
-        public SyndicationQuestionsQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        public SyndicationQuestionsQueryHandler(IProjector projector, AskDbContext context) : base(projector, context)
         {
         }
     }

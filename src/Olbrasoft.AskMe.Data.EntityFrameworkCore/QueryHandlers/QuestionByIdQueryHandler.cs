@@ -17,7 +17,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
             return await ProjectTo<QuestionDto>(Entities().Where(p => p.Id == query.QuestionId)).FirstOrDefaultAsync(token);
         }
 
-        public QuestionByIdQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        public QuestionByIdQueryHandler(IProjector projector, AskDbContext context) : base(projector, context)
         {
         }
     }

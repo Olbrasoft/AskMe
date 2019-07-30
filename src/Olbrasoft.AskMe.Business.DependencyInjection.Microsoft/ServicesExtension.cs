@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Olbrasoft.AskMe.Business.Services;
 
 namespace Olbrasoft.AskMe.Business.DependencyInjection.Microsoft

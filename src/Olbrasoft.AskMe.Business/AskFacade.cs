@@ -42,6 +42,11 @@ namespace Olbrasoft.AskMe.Business
             return Questions.AddAsync(question);
         }
         
+        public Task AddAsync(InputQuestionDto question,out int questionId )
+        {
+            return Questions.AddAsync(question,out questionId);
+        }
+
         public Task EditAsync(QuestionDto question, out bool  notFound)
         {
 

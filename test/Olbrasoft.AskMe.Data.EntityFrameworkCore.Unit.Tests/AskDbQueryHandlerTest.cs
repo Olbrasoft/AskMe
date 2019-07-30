@@ -14,7 +14,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests
         public void Instance_Inherits_From_DbQueryHandler()
         {
             var contextMock = new Mock<AskDbContext>();
-            var projectorMock= new Mock<IProjection>();
+            var projectorMock= new Mock<IProjector>();
 
             var handler = new AwesomeQueryHandler(projectorMock.Object,contextMock.Object);
 

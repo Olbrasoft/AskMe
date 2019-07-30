@@ -9,7 +9,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests
 {
     public class AwesomeQueryHandler : AskQueryHandler<Query<bool>,bool,AwesomeEntity>
     {
-        public AwesomeQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        public AwesomeQueryHandler(IProjector projector, AskDbContext context) : base(projector, context)
         {
         }
 

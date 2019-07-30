@@ -6,7 +6,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore
 {
     public abstract class AskQueryHandler<TQuery, TResult, TEntity>:QueryHandlerWithProjectorAndDbContext<TQuery,TResult,TEntity,AskDbContext> where TQuery : IQuery<TResult> where TEntity : class
     {
-        protected AskQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        protected AskQueryHandler(IProjector projector, AskDbContext context) : base(projector, context)
         {
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Web.Mvc.Models.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,8 +25,6 @@ namespace Altairis.AskMe.Web.Mvc.Controllers
         {
             var pageInfo = new PageInfo(10, pageNumber);
             var answeredQuestions = await _askFacade.GetAnsweredQuestionsAsync(pageInfo);
-
-           
 
             return View(answeredQuestions.AsPagedList(pageInfo));
         }
@@ -61,23 +58,14 @@ namespace Altairis.AskMe.Web.Mvc.Controllers
             // Validate posted data
             if (ModelState.IsValid)
             {
-                // Create and save question entity
-                var nq = new Question
-                {
-                    QuestionText = model.Input.QuestionText,
-                    CategoryId = model.Input.CategoryId,
-                    DisplayName = model.Input.DisplayName,
-                    EmailAddress = model.Input.EmailAddress
-                };
-
-                await _askFacade.AddAsync(nq);
+                await _askFacade.AddAsync(model.Input, out var id);
 
                 // Redirect to list of questions
                 return RedirectToAction(
                     actionName: "Questions",
                     controllerName: "Home",
                     routeValues: new { pageNumber = string.Empty },
-                    fragment: $"q_{nq.Id}");
+                    fragment: $"q_{id}");
             }
 
             // Posted data not is valid

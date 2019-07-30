@@ -16,7 +16,7 @@ namespace Olbrasoft.Querying.Mapping.EntityFrameworkCore
             Entities();
         }
 
-        public AwesomeDbQueryHandler(IProjection projector, DbContext context) : base(projector, context)
+        public AwesomeDbQueryHandler(IProjector projector, DbContext context) : base(projector, context)
         {
         }
     }

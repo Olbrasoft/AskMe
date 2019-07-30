@@ -47,7 +47,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         private static SyndicationQuestionsQueryHandler SyndicationQuestionsQueryHandler()
         {
             var contextMock = new Mock<AskDbContext>();
-            var projectorMock = new Mock<IProjection>();
+            var projectorMock = new Mock<IProjector>();
 
             var handler = new SyndicationQuestionsQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;

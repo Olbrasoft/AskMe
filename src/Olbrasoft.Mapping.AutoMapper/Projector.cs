@@ -4,7 +4,7 @@ using AutoMapper.QueryableExtensions;
 
 namespace Olbrasoft.Mapping.AutoMapper
 {
-    public class Projector : IProjection
+    public class Projector : IProjector
     {
         private readonly IConfigurationProvider _provider;
 

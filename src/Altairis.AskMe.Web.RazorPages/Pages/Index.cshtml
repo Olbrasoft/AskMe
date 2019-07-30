@@ -1,8 +1,7 @@
 ﻿@page "{pageNumber:int:min(1)=1}"
 @model IndexModel
 
-@foreach (var item in Model.Data) {
-    var id = $"q_{item.Id}";
+@foreach (var item in Model.PagedData) {var id = $"q_{item.Id}";
     <article class="answer" id="@id">
         <section class="question">
             <header>
@@ -11,7 +10,7 @@
                     <i class="fas fa-question fa-stack-1x fa-inverse"></i>
                 </span>
                 <span class="info">
-                    <i class="fas fa-tag"></i> @item.Category.Name
+                    <i class="fas fa-tag"></i> @item.CategoryName
                     <i class="fas fa-calendar"></i> <time value="@item.DateCreated"></time>
                     @if (!string.IsNullOrWhiteSpace(item.DisplayName)) {
                         <span><i class="fas fa-user"></i> @item.DisplayName</span>
@@ -37,4 +36,4 @@
         </section>
     </article>
 }
-<vc:pager model="Model.Paging"></vc:pager>
+<vc:pager model="Model.PagedData"></vc:pager>

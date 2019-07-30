@@ -43,7 +43,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         private static QuestionByIdQueryHandler QuestionByIdQueryHandler()
         {
             var contextMock = new Mock<AskDbContext>();
-            var projectorMock = new Mock<IProjection>();
+            var projectorMock = new Mock<IProjector>();
 
             var handler = new QuestionByIdQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;

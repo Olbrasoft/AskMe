@@ -18,7 +18,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers
             return await ProjectTo<CategoryListItemDto>(Entities().OrderBy(x => x.Name)).ToArrayAsync(token);
         }
 
-        public CategoriesListItemsQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        public CategoriesListItemsQueryHandler(IProjector projector, AskDbContext context) : base(projector, context)
         {
         }
     }

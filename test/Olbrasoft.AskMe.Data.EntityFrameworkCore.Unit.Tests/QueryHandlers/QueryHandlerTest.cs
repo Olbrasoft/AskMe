@@ -29,7 +29,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         {
             // var contextOptionMock = new Mock<DbContextOptions<AskDbContext>>();
             var contextMock = new Mock<AskDbContext>(MockBehavior.Strict);
-            var projectorMock = new Mock<IProjection>();
+            var projectorMock = new Mock<IProjector>();
 
             var handler = new AwesomeQueryHandler(projectorMock.Object, contextMock.Object);
             return handler;
@@ -41,7 +41,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
        
         public override Task<AwesomeResult> HandleAsync(AwesomeQuery query, CancellationToken token) => throw new NotImplementedException();
 
-        public AwesomeQueryHandler(IProjection projector, AskDbContext context) : base(projector, context)
+        public AwesomeQueryHandler(IProjector projector, AskDbContext context) : base(projector, context)
         {
         }
     }

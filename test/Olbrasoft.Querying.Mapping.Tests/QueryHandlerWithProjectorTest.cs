@@ -8,7 +8,7 @@ namespace Olbrasoft.Querying.Mapping
 {
     public class QueryHandlerWithProjectorTest
     {
-        private readonly Mock<IProjection> _projectorMock = new Mock<IProjection>();
+        private readonly Mock<IProjector> _projectorMock = new Mock<IProjector>();
 
         [Fact]
         public void Instance_Inherits_From_QueryHandler()

@@ -44,7 +44,7 @@ namespace Olbrasoft.Querying.Mapping.EntityFrameworkCore
 
         private AwesomeDbQueryHandler AwesomeQueryHandler()
         {
-            var projectorMock = new Mock<IProjection>();
+            var projectorMock = new Mock<IProjector>();
 
             var handler = new AwesomeDbQueryHandler(projectorMock.Object, _contextMock.Object);
             return handler;

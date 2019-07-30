@@ -45,7 +45,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.QueryHandlers
         private static PagedAnsweredQuestionsQueryHandler PagedAnsweredQuestionsQueryHandler()
         {
             var askDbContextMock = new Mock<AskDbContext>();
-            var projectorMock = new Mock<IProjection>();
+            var projectorMock = new Mock<IProjector>();
 
             var handler = new PagedAnsweredQuestionsQueryHandler(projectorMock.Object, askDbContextMock.Object);
             return handler;

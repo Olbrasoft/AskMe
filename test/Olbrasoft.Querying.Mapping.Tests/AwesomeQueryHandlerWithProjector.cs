@@ -19,7 +19,7 @@ namespace Olbrasoft.Querying.Mapping
             ProjectTo<bool>(new List<bool>().AsQueryable());
         }
 
-        public AwesomeQueryHandlerWithProjector(IProjection projector) : base(projector)
+        public AwesomeQueryHandlerWithProjector(IProjector projector) : base(projector)
         {
         }
     }

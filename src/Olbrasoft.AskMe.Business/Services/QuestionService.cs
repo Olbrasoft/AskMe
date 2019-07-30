@@ -49,6 +49,19 @@ namespace Olbrasoft.AskMe.Business.Services
             return command.ExecuteAsync(token);
         }
 
+        public Task AddAsync(InputQuestionDto question,out int questionId,CancellationToken token = default)
+        {
+            var command = CommandFactory.CreateCommand<InputQuestionCommand>();
+            command.Data = question;
+
+            var result = command.ExecuteAsync(token);
+
+            questionId = command.QuestionId;
+
+            return result;
+        }
+
+
         public Task<IEnumerable<SyndicationQuestionDto>> GetSyndicationsAsync(int take, CancellationToken token = default)
         {
             var query = QueryFactory.CreateQuery<SyndicationQuestionsQuery>();

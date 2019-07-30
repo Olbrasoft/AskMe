@@ -3,42 +3,42 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Altairis.AskMe.Data.Base.Objects;
-using Altairis.AskMe.Web.RazorPages.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Olbrasoft.AskMe.Business;
+using Olbrasoft.Paging;
+using Olbrasoft.Paging.X.PagedList;
 
-namespace Altairis.AskMe.Web.RazorPages.Pages {
-    public class QuestionsModel : PagedPageModel<Question> {
-        private readonly AskDbContext dbContext;
-        private readonly AppConfiguration config;
-        private readonly IQueryable<Question> dataSource;
+namespace Altairis.AskMe.Web.RazorPages.Pages
+{
+    public class QuestionsModel : PageModel
+    {
+        private readonly IAsk _askFacade;
+
+        public X.PagedList.IPagedList<Data.Transfer.Objects.UnansweredQuestionDto> PagedData { get; set; }
 
         // Constructor
-
-        public QuestionsModel(AskDbContext dbContext, IOptionsSnapshot<AppConfiguration> optionsSnapshot) {
-            this.dbContext = dbContext;
-            this.config = optionsSnapshot.Value;
-            this.dataSource = this.dbContext.Questions
-                .Include(x => x.Category)
-                .Where(x => !x.DateAnswered.HasValue)
-                .OrderByDescending(x => x.DateCreated);
+        public QuestionsModel(IAsk askFacade)
+        {
+            _askFacade = askFacade;
         }
 
         // Model properties
-
-        public IEnumerable<SelectListItem> Categories => this.dbContext.Categories
-            .OrderBy(c => c.Name)
-            .Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString() });
+        public IEnumerable<SelectListItem> Categories => _askFacade.GetCategoriesAsync().Result.Select(c =>
+            new SelectListItem
+            {
+                Text = c.Text,
+                Value = c.Value.ToString()
+            });
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         // Input model
 
-        public class InputModel {
+        public class InputModel
+        {
             [Required(ErrorMessage = "Není zadána otázka"), MaxLength(500), DataType(DataType.MultilineText)]
             public string QuestionText { get; set; }
 
@@ -53,29 +53,36 @@ namespace Altairis.AskMe.Web.RazorPages.Pages {
 
         // Handlers
 
-        public async Task OnGetAsync(int pageNumber) {
-            await base.GetData(this.dataSource, pageNumber, this.config.PageSize);
+        public async Task OnGetAsync(int pageNumber)
+        {
+            var pageInfo = new PageInfo(5, pageNumber);
+            var unansweredQuestions = await _askFacade.GetUnansweredQuestionsAsync(pageInfo);
+            PagedData = unansweredQuestions.AsPagedList(pageInfo);
         }
 
-        public async Task<IActionResult> OnPostAsync(int pageNumber) {
-            if (this.ModelState.IsValid) {
+        public async Task<IActionResult> OnPostAsync(int pageNumber)
+        {
+            if (this.ModelState.IsValid)
+            {
                 // Create and save question entity
-                var nq = new Question {
+                var nq = new Question
+                {
                     QuestionText = this.Input.QuestionText,
                     CategoryId = this.Input.CategoryId,
                     DisplayName = this.Input.DisplayName,
                     EmailAddress = this.Input.EmailAddress
                 };
-                await this.dbContext.Questions.AddAsync(nq);
-                await this.dbContext.SaveChangesAsync();
+                await _askFacade.AddAsync(nq);
 
                 // Redirect to list of questions
                 return this.RedirectToPage(pageName: "Questions", pageHandler: null, routeValues: new { pageNumber = string.Empty }, fragment: $"q_{nq.Id}");
             }
 
-            await base.GetData(this.dataSource, pageNumber, this.config.PageSize);
-            return this.Page();
-        }
+            var pageInfo = new PageInfo(5, pageNumber);
+            var unansweredQuestions = await _askFacade.GetUnansweredQuestionsAsync(pageInfo);
+            PagedData = unansweredQuestions.AsPagedList(pageInfo);
 
+            return Page();
+        }
     }
 }

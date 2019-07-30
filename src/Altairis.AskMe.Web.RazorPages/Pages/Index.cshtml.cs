@@ -1,33 +1,29 @@
-using System.Linq;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data.Base.Objects;
-using Altairis.AskMe.Web.RazorPages.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Olbrasoft.AskMe.Business;
+using Olbrasoft.Paging;
+using Olbrasoft.Paging.X.PagedList;
 
-namespace Altairis.AskMe.Web.RazorPages.Pages {
-    public class IndexModel : PagedPageModel<Question> {
-        private readonly AskDbContext dbContext;
-        private readonly AppConfiguration config;
-        private readonly IQueryable<Question> dataSource;
+namespace Altairis.AskMe.Web.RazorPages.Pages
+{
+    public class IndexModel : PageModel
+    {
+        private readonly IAsk _askFacade;
+
+        public X.PagedList.IPagedList<Data.Transfer.Objects.QuestionDto> PagedData { get; set; }
 
         // Constructor
-
-        public IndexModel(AskDbContext dbContext, IOptionsSnapshot<AppConfiguration> optionsSnapshot) {
-            this.dbContext = dbContext;
-            this.config = optionsSnapshot.Value;
-            this.dataSource = this.dbContext.Questions
-                .Include(x => x.Category)
-                .Where(x => x.DateAnswered.HasValue)
-                .OrderByDescending(x => x.DateAnswered);
+        public IndexModel(IAsk askFacade)
+        {
+            _askFacade = askFacade;
         }
 
         // Handlers
-
-        public async Task OnGetAsync(int pageNumber) {
-            await base.GetData(this.dataSource, pageNumber, this.config.PageSize);
+        public async Task OnGetAsync(int pageNumber)
+        {
+            var pageInfo = new PageInfo(10, pageNumber);
+            var answeredQuestions = await _askFacade.GetAnsweredQuestionsAsync(pageInfo);
+            PagedData = answeredQuestions.AsPagedList(pageInfo);
         }
-
     }
 }

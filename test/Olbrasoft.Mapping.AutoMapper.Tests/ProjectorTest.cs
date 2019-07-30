@@ -13,7 +13,7 @@ namespace Olbrasoft.Mapping.AutoMapper
 
             var projector = new Projector(providerMOck.Object);
 
-            Assert.IsAssignableFrom<IProjection>(projector);
+            Assert.IsAssignableFrom<IProjector>(projector);
         }
 
 

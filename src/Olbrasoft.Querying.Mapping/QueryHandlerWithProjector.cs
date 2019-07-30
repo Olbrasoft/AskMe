@@ -5,9 +5,9 @@ namespace Olbrasoft.Querying.Mapping
 {
     public abstract class QueryHandlerWithProjector<TQuery, TResult> : QueryHandler<TQuery, TResult> where TQuery : IQuery<TResult>
     {
-        private readonly IProjection _projector;
+        private readonly IProjector _projector;
 
-        protected QueryHandlerWithProjector(IProjection projector)
+        protected QueryHandlerWithProjector(IProjector projector)
         {
             _projector = projector;
         }

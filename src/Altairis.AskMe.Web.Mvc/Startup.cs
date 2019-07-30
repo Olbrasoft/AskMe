@@ -10,14 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Olbrasoft.AskMe.Business;
 using Olbrasoft.AskMe.Business.DependencyInjection.Microsoft;
-using Olbrasoft.AskMe.Business.Services;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 using Olbrasoft.Commanding.DependencyInjection.Microsoft;
 using Olbrasoft.Mapping;
 using Olbrasoft.Mapping.AutoMapper;
 using Olbrasoft.Querying.DependencyInjection.Microsoft;
+using IMapper = AutoMapper.IMapper;
 
 namespace Altairis.AskMe.Web.Mvc
 {
@@ -48,7 +47,8 @@ namespace Altairis.AskMe.Web.Mvc
 
             services.AddAutoMapper(typeof(Data.Transfer.Objects.QuestionDto).Assembly);
 
-            services.AddSingleton<IProjection, Projector>();
+            services.AddSingleton<IProjector, Projector>();
+            services.AddSingleton<Olbrasoft.Mapping.IMapper, Olbrasoft.Mapping.AutoMapper.Mapper>();
 
             services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
 
@@ -86,7 +86,6 @@ namespace Altairis.AskMe.Web.Mvc
             services.Configure<AppConfiguration>(_config);
         }
 
-       
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager, IMapper autoMapper)
         {
             autoMapper.ConfigurationProvider.AssertConfigurationIsValid();
