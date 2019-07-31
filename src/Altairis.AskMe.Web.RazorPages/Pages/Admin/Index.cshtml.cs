@@ -1,35 +1,38 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Altairis.AskMe.Data.Transfer.Objects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Olbrasoft.AskMe.Business;
 
-namespace Altairis.AskMe.Web.RazorPages.Pages.Admin {
-    public class IndexModel : PageModel {
-        private readonly AskDbContext dbContext;
+namespace Altairis.AskMe.Web.RazorPages.Pages.Admin
+{
+    public class IndexModel : PageModel
+    {
+        private readonly IAsk _askFacade;
 
         // Constructor
 
-        public IndexModel(AskDbContext dbContext) {
-            this.dbContext = dbContext;
+        public IndexModel(IAsk askFacade)
+        {
+            _askFacade = askFacade;
         }
 
         // Model properties
 
-        public IEnumerable<SelectListItem> Categories => this.dbContext.Categories
-            .OrderBy(c => c.Name)
-            .Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString() });
+        public IEnumerable<SelectListItem> Categories => _askFacade.GetCategoriesAsync().Result.Select(
+            c => new SelectListItem { Text = c.Text, Value = c.Value.ToString() });
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         // Input model
 
-        public class InputModel {
+        public class InputModel
+        {
             [Required(ErrorMessage = "Není zadána otázka"), MaxLength(500), DataType(DataType.MultilineText)]
             public string QuestionText { get; set; }
 
@@ -46,13 +49,15 @@ namespace Altairis.AskMe.Web.RazorPages.Pages.Admin {
 
         // Handlers
 
-        public async Task<IActionResult> OnGetAsync(int questionId) {
+        public async Task<IActionResult> OnGetAsync(int questionId)
+        {
             // Create question
-            var q = await this.dbContext.Questions.FindAsync(questionId);
-            if (q == null) return this.NotFound();
+            var q = await _askFacade.GetQuestionAsync(questionId);
+            if (q == null) return NotFound();
 
             // Prepare model
-            this.Input = new InputModel {
+            Input = new InputModel
+            {
                 AnswerText = q.AnswerText,
                 CategoryId = q.CategoryId,
                 DisplayName = q.DisplayName,
@@ -60,34 +65,30 @@ namespace Altairis.AskMe.Web.RazorPages.Pages.Admin {
                 QuestionText = q.QuestionText
             };
 
-            return this.Page();
+            return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int questionId) {
+        public async Task<IActionResult> OnPostAsync(int questionId)
+        {
             // Create question
-            var q = await this.dbContext.Questions.FindAsync(questionId);
-            if (q == null) return this.NotFound();
 
-            if (this.ModelState.IsValid) {
-                // Update question
-                q.CategoryId = this.Input.CategoryId;
-                q.DisplayName = this.Input.DisplayName;
-                q.EmailAddress = this.Input.EmailAddress;
-                q.QuestionText = this.Input.QuestionText;
+            if (!ModelState.IsValid) return Page();
 
-                if (string.IsNullOrWhiteSpace(this.Input.AnswerText)) {
-                    q.AnswerText = null;
-                    q.DateAnswered = null;
-                }
-                else {
-                    q.AnswerText = this.Input.AnswerText;
-                    if (!q.DateAnswered.HasValue) q.DateAnswered = DateTime.Now;
-                }
+            var question = new QuestionDto
+            {
+                Id = questionId,
+                CategoryId = Input.CategoryId,
+                DisplayName = Input.DisplayName,
+                EmailAddress = Input.EmailAddress,
+                QuestionText = Input.QuestionText,
+                AnswerText = Input.AnswerText
+            };
 
-                await this.dbContext.SaveChangesAsync();
-                return this.RedirectToPage("/Question", new { questionId = q.Id });
-            }
-            return this.Page();
+            await _askFacade.EditAsync(question, out var notFound);
+
+            if (notFound) return NotFound();
+            
+            return RedirectToPage("/Question", new { questionId = question.Id });
         }
     }
 }

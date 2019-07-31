@@ -15,9 +15,7 @@ namespace Olbrasoft.AskMe.Business
         Task<IResultWithTotalCount<QuestionDto>> GetAnsweredQuestionsAsync(IPageInfo pagingSettings);
 
         Task<IResultWithTotalCount<UnansweredQuestionDto>> GetUnansweredQuestionsAsync(IPageInfo pagingSettings);
-
-        Task AddAsync(Question question);
-
+        
         Task AddAsync(InputQuestionDto question,out int questionId);
 
         Task EditAsync(QuestionDto question, out bool notFound );

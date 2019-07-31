@@ -1,18 +1,19 @@
 ﻿using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Commands;
+using Altairis.AskMe.Data.Transfer.Objects;
 using Moq;
 using NUnit.Framework;
 using Olbrasoft.Commanding;
 
 namespace Olbrasoft.AskMe.Data.Unit.Tests.Commands
 {
-    public class InsertQuestionCommandTest
+    public class InputQuestionCommandTest
     {
         [Test]
         public void Instance_Is_Command_Of_UnansweredQuestionDto()
         {
             //Arrange
-            var type = typeof(Command<Question>);
+            var type = typeof(Command<InputQuestionDto>);
 
             //Act
             var command = InsertQuestionCommand();
@@ -21,11 +22,11 @@ namespace Olbrasoft.AskMe.Data.Unit.Tests.Commands
             Assert.IsInstanceOf(type, command);
         }
 
-        private static InsertQuestionCommand InsertQuestionCommand()
+        private static InputQuestionCommand InsertQuestionCommand()
         {
             var dispatcherMock = new Mock<ICommandDispatcher>();
 
-            var command = new InsertQuestionCommand(dispatcherMock.Object);
+            var command = new InputQuestionCommand(dispatcherMock.Object);
             return command;
         }
     }

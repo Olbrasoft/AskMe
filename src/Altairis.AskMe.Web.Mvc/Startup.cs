@@ -50,7 +50,7 @@ namespace Altairis.AskMe.Web.Mvc
             services.AddSingleton<IProjector, Projector>();
             services.AddSingleton<Olbrasoft.Mapping.IMapper, Olbrasoft.Mapping.AutoMapper.Mapper>();
 
-            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+            services.AddCommanding(typeof(Data.Commands.InputQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
 
             services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
 

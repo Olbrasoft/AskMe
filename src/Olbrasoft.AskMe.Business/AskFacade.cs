@@ -37,11 +37,7 @@ namespace Olbrasoft.AskMe.Business
             return Questions.GetUnansweredAsync(pagingSettings);
         }
 
-        public Task AddAsync(Question question)
-        {
-            return Questions.AddAsync(question);
-        }
-        
+     
         public Task AddAsync(InputQuestionDto question,out int questionId )
         {
             return Questions.AddAsync(question,out questionId);

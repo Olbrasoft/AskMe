@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Commands;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
@@ -82,19 +81,6 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
         }
 
         [Test]
-        public void AddAsync_Return_Task()
-        {
-            //Arrange
-            var service = QuestionService();
-
-            //Act
-            var result = service.AddAsync(new Question());
-
-            //Assert
-            Assert.IsInstanceOf<Task>(result);
-        }
-
-        [Test]
         public void GetSyndicationsAsync_Return_Task_Of_IEnumerable_Of_SyndicationQuestionDto()
         {
             //Arrange
@@ -141,9 +127,6 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
 
             var commandFactoryMock = new Mock<ICommandFactory>();
             var queryFactoryMock = new Mock<IQueryFactory>();
-
-            commandFactoryMock.Setup(p => p.CreateCommand<InsertQuestionCommand>())
-                .Returns(new InsertQuestionCommand(dispatcherMock.Object));
 
             commandFactoryMock.Setup(p => p.CreateCommand<UpdateQuestionCommand>())
                 .Returns(new UpdateQuestionCommand(dispatcherMock.Object));

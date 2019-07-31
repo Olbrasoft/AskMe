@@ -84,18 +84,6 @@ namespace Olbrasoft.AskMe.Business.Tests
             Assert.IsInstanceOf(type, result);
         }
 
-        [Test]
-        public void AddAsync_Return_Task()
-        {
-            //Arrange
-            var facade = AskFacade();
-
-            //Act
-            var result = facade.AddAsync(new Question());
-
-            //Assert
-            Assert.IsInstanceOf<Task>(result);
-        }
 
 
         [Test]

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Data.Commands;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
@@ -36,14 +35,6 @@ namespace Olbrasoft.AskMe.Business.Services
             query.Paging = pagingSettings;
 
             return query.ExecuteAsync(cancellationToken);
-        }
-
-        public Task AddAsync(Question question, CancellationToken token = default)
-        {
-            var command = GetCommand<InsertQuestionCommand>();
-            command.Data = question;
-
-            return command.ExecuteAsync(token);
         }
 
         public Task AddAsync(InputQuestionDto question, out int questionId, CancellationToken token = default)
