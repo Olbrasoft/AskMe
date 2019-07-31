@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Olbrasoft.Mapping;
 
-namespace Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests
+namespace Olbrasoft.Commanding.Mapping.EntityFrameworkCore
 {
     public class AwesomeCommandHandlerWithMapperAndDbContext :CommandHandlerWithMapperAndDbContext<Command,DbContext>
     {

@@ -7,6 +7,6 @@ namespace Olbrasoft.AskMe.Business
 {
     public interface ICategories
     {
-        Task<IEnumerable<CategoryListItemDto>> GetAsync(CancellationToken cancellationToken = default);
+        Task<IEnumerable<CategoryListItemDto>> GetAsync(CancellationToken token = default);
     }
 }

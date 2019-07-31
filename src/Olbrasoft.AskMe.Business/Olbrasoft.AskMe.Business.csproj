@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.CommandingAndQuerying.Business\Olbrasoft.CommandingAndQuerying.Business.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.Business\Olbrasoft.Querying.Business.csproj" />
   </ItemGroup>
 
 </Project>

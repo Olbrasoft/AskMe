@@ -11,6 +11,6 @@ namespace Altairis.AskMe.Web.Mvc.Models.Home
 
         public IPagedList<UnansweredQuestionDto> UnansweredQuestions { get; set; }
 
-        public InputQuestionDto Input { get; set; }
+        public InputQuestionDto InputQuestion { get; set; }
     }
 }

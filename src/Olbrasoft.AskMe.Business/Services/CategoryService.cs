@@ -3,22 +3,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
-using Olbrasoft.Commanding;
 using Olbrasoft.Querying;
+using Olbrasoft.Querying.Business;
 
 namespace Olbrasoft.AskMe.Business.Services
 {
-    public class CategoryService : Service, ICategories
+    public class CategoryService : ServiceWithQueryFactory, ICategories
     {
-        public CategoryService(ICommandFactory commandFactory, IQueryFactory queryFactory) : base(commandFactory, queryFactory)
+        public CategoryService(IQueryFactory factory) : base(factory)
         {
         }
 
-        public Task<IEnumerable<CategoryListItemDto>> GetAsync(CancellationToken cancellationToken = default)
+        public Task<IEnumerable<CategoryListItemDto>> GetAsync(CancellationToken token = default)
         {
-            var query = QueryFactory.CreateQuery<CategoriesListItemsQuery>();
+            var query = GetQuery<CategoriesListItemsQuery>();
 
-            return query.ExecuteAsync(cancellationToken);
+            return query.ExecuteAsync(token);
         }
     }
 }

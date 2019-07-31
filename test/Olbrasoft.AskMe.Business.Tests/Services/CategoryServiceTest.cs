@@ -7,6 +7,7 @@ using NUnit.Framework;
 using Olbrasoft.AskMe.Business.Services;
 using Olbrasoft.Commanding;
 using Olbrasoft.Querying;
+using Olbrasoft.Querying.Business;
 
 namespace Olbrasoft.AskMe.Business.Tests.Services
 {
@@ -16,7 +17,7 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
         public void Instance_Is_Service()
         {
             //Arrange
-            var type = typeof(Service);
+            var type = typeof(ServiceWithQueryFactory);
 
             //Act
             var service = CategoryService();
@@ -54,14 +55,13 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
         private static CategoryService CategoryService()
         {
             var queryFactoryMock = new Mock<IQueryFactory>();
-            var commandFactoryMock = new Mock<ICommandFactory>();
 
             var dispatcherMock = new Mock<IQueryDispatcher>();
 
             queryFactoryMock.Setup(p => p.CreateQuery<CategoriesListItemsQuery>())
                 .Returns(new CategoriesListItemsQuery(dispatcherMock.Object));
 
-            var service = new CategoryService(commandFactoryMock.Object, queryFactoryMock.Object);
+            var service = new CategoryService(queryFactoryMock.Object);
             return service;
         }
     }

@@ -6,20 +6,17 @@ using Altairis.AskMe.Data.Commands;
 using Altairis.AskMe.Data.Queries;
 using Altairis.AskMe.Data.Transfer.Objects;
 using Olbrasoft.Commanding;
+using Olbrasoft.CommandingAndQuerying.Business;
 using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 
 namespace Olbrasoft.AskMe.Business.Services
 {
-    public class QuestionService : Service, IQuestions
+    public class QuestionService : ServiceWithCommandFactoryAndQueryFactory, IQuestions
     {
-        public QuestionService(ICommandFactory commandFactory, IQueryFactory queryFactory) : base(commandFactory, queryFactory)
-        {
-        }
-
         public Task<QuestionDto> GetAsync(int id, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.CreateQuery<QuestionByIdQuery>();
+            var query = GetQuery<QuestionByIdQuery>();
             query.QuestionId = id;
 
             return query.ExecuteAsync(cancellationToken);
@@ -27,7 +24,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IResultWithTotalCount<QuestionDto>> GetAnsweredAsync(IPageInfo pagingSettings, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.CreateQuery<PagedAnsweredQuestionsQuery>();
+            var query = GetQuery<PagedAnsweredQuestionsQuery>();
             query.Paging = pagingSettings;
 
             return query.ExecuteAsync(cancellationToken);
@@ -35,7 +32,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task<IResultWithTotalCount<UnansweredQuestionDto>> GetUnansweredAsync(IPageInfo pagingSettings, CancellationToken cancellationToken = default)
         {
-            var query = QueryFactory.CreateQuery<PagedUnansweredQuestionsQuery>();
+            var query = GetQuery<PagedUnansweredQuestionsQuery>();
             query.Paging = pagingSettings;
 
             return query.ExecuteAsync(cancellationToken);
@@ -43,15 +40,15 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public Task AddAsync(Question question, CancellationToken token = default)
         {
-            var command = CommandFactory.CreateCommand<InsertQuestionCommand>();
+            var command = GetCommand<InsertQuestionCommand>();
             command.Data = question;
 
             return command.ExecuteAsync(token);
         }
 
-        public Task AddAsync(InputQuestionDto question,out int questionId,CancellationToken token = default)
+        public Task AddAsync(InputQuestionDto question, out int questionId, CancellationToken token = default)
         {
-            var command = CommandFactory.CreateCommand<InputQuestionCommand>();
+            var command = GetCommand<InputQuestionCommand>();
             command.Data = question;
 
             var result = command.ExecuteAsync(token);
@@ -61,32 +58,34 @@ namespace Olbrasoft.AskMe.Business.Services
             return result;
         }
 
-
         public Task<IEnumerable<SyndicationQuestionDto>> GetSyndicationsAsync(int take, CancellationToken token = default)
         {
-            var query = QueryFactory.CreateQuery<SyndicationQuestionsQuery>();
+            var query = GetQuery<SyndicationQuestionsQuery>();
             query.Take = take;
 
             return query.ExecuteAsync(token);
         }
 
-        public Task EditAsync(QuestionDto question, out bool notFound ,CancellationToken token = default)
+        public Task EditAsync(QuestionDto question, out bool notFound, CancellationToken token = default)
         {
-            var command = CommandFactory.CreateCommand<UpdateQuestionCommand>();
+            var command = GetCommand<UpdateQuestionCommand>();
             command.Data = question;
             var result = command.ExecuteAsync(token);
             notFound = command.NotFound;
 
             return result;
-
         }
 
         public Task<bool> ExistAsync(int id, CancellationToken token = default)
         {
-            var query = QueryFactory.CreateQuery<ExistQuestionQuery>();
+            var query = GetQuery<ExistQuestionQuery>();
             query.QuestionId = id;
 
             return query.ExecuteAsync(token);
+        }
+
+        public QuestionService(ICommandFactory commandFactory, IQueryFactory queryFactory) : base(commandFactory, queryFactory)
+        {
         }
     }
 }

@@ -12,15 +12,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Olbrasoft.AskMe.Business.DependencyInjection.Microsoft;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
 using Olbrasoft.Commanding.DependencyInjection.Microsoft;
-using Olbrasoft.Mapping;
-using Olbrasoft.Mapping.AutoMapper;
+using Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft;
 using Olbrasoft.Querying.DependencyInjection.Microsoft;
 
-namespace Altairis.AskMe.Web.RazorPages {
-    public class Startup {
+namespace Altairis.AskMe.Web.RazorPages
+{
+    public class Startup
+    {
         private readonly IConfigurationRoot _config;
 
-        public Startup(IHostingEnvironment env) {
+        public Startup(IHostingEnvironment env)
+        {
             // Set CWD to content root (needed when AspNetCoreHostingModel=InProcess)
             Environment.CurrentDirectory = env.ContentRootPath;
 
@@ -33,16 +35,16 @@ namespace Altairis.AskMe.Web.RazorPages {
             this._config = builder.Build();
         }
 
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices(IServiceCollection services)
+        {
             // Configure DB context
-            services.AddDbContext<AskDbContext>(options => {
+            services.AddDbContext<AskDbContext>(options =>
+            {
                 options.UseSqlite(this._config.GetConnectionString("AskDB"));
             });
-
-
-            services.AddAutoMapper(typeof(Data.Transfer.Objects.QuestionDto).Assembly);
-
-            services.AddSingleton<IProjector, Projector>();
+            
+            
+            services.AddMapping(typeof(Data.Transfer.Objects.CategoryListItemDto).Assembly);
 
             services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
 
@@ -52,12 +54,14 @@ namespace Altairis.AskMe.Web.RazorPages {
 
             // Configure Razor Pages
             services.AddMvc()
-                .AddRazorPagesOptions(options => {
+                .AddRazorPagesOptions(options =>
+                {
                     options.Conventions.AuthorizeFolder("/Admin");
                 });
 
             // Configure identity and authentication
-            services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
+            {
                 options.Password.RequiredLength = 12;
                 options.Password.RequiredUniqueChars = 4;
                 options.Password.RequireDigit = false;
@@ -67,7 +71,8 @@ namespace Altairis.AskMe.Web.RazorPages {
             })
                 .AddEntityFrameworkStores<AskDbContext>()
                 .AddDefaultTokenProviders();
-            services.ConfigureApplicationCookie(options => {
+            services.ConfigureApplicationCookie(options =>
+            {
                 options.LoginPath = "/Account/Login";
                 options.LogoutPath = "/Account/Logout";
                 options.SlidingExpiration = true;
@@ -78,9 +83,11 @@ namespace Altairis.AskMe.Web.RazorPages {
             services.Configure<AppConfiguration>(this._config);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager)
+        {
             // Show detailed errors in development environment
-            if (env.IsDevelopment()) {
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
@@ -90,15 +97,18 @@ namespace Altairis.AskMe.Web.RazorPages {
             context.Database.Migrate();
 
             // Seed initial data if in development environment
-            if (env.IsDevelopment()) {
+            if (env.IsDevelopment())
+            {
                 // Create categories
                 context.Seed();
 
                 // Create default user
-                if (!userManager.Users.Any()) {
+                if (!userManager.Users.Any())
+                {
                     var adminUser = new ApplicationUser { UserName = "admin" };
                     var r = userManager.CreateAsync(adminUser, "pass.word123").Result;
-                    if (r != IdentityResult.Success) {
+                    if (r != IdentityResult.Success)
+                    {
                         var errors = string.Join(", ", r.Errors.Select(x => x.Description));
                         throw new Exception("Seeding default user failed: " + errors);
                     }
@@ -109,8 +119,10 @@ namespace Altairis.AskMe.Web.RazorPages {
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             // Enable static file caching for one year
-            app.UseStaticFiles(new StaticFileOptions {
-                OnPrepareResponse = ctx => {
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
                     ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=31536000");
                 }
             });
@@ -119,6 +131,5 @@ namespace Altairis.AskMe.Web.RazorPages {
             app.UseAuthentication();
             app.UseMvc();
         }
-
     }
 }

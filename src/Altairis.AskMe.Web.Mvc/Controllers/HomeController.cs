@@ -58,7 +58,7 @@ namespace Altairis.AskMe.Web.Mvc.Controllers
             // Validate posted data
             if (ModelState.IsValid)
             {
-                await _askFacade.AddAsync(model.Input, out var id);
+                await _askFacade.AddAsync(model.InputQuestion, out var id);
 
                 // Redirect to list of questions
                 return RedirectToAction(

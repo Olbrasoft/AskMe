@@ -24,7 +24,6 @@
     <ProjectReference Include="..\Olbrasoft.AskMe.Business.DependencyInjection.Microsoft\Olbrasoft.AskMe.Business.DependencyInjection.Microsoft.csproj" />
     <ProjectReference Include="..\Olbrasoft.AskMe.Business\Olbrasoft.AskMe.Business.csproj" />
     <ProjectReference Include="..\Olbrasoft.AskMe.Data.EntityFrameworkCore\Olbrasoft.AskMe.Data.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\Olbrasoft.Commanding.Castle\Olbrasoft.Commanding.Castle.csproj" />
     <ProjectReference Include="..\Olbrasoft.Commanding.DependencyInjection.Castle\Olbrasoft.Commanding.DependencyInjection.Castle.csproj" />
     <ProjectReference Include="..\Olbrasoft.Commanding.DependencyInjection.Microsoft\Olbrasoft.Commanding.DependencyInjection.Microsoft.csproj" />
     <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj" />

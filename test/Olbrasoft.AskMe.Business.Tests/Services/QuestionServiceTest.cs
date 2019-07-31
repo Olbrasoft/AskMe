@@ -8,6 +8,7 @@ using Moq;
 using NUnit.Framework;
 using Olbrasoft.AskMe.Business.Services;
 using Olbrasoft.Commanding;
+using Olbrasoft.CommandingAndQuerying.Business;
 using Olbrasoft.Paging;
 using Olbrasoft.Querying;
 
@@ -19,7 +20,7 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
         public void Instance_Is_Service()
         {
             //Arrange
-            var type = typeof(Service);
+            var type = typeof(ServiceWithCommandFactoryAndQueryFactory);
 
             //Act
             var service = QuestionService();
@@ -126,7 +127,7 @@ namespace Olbrasoft.AskMe.Business.Tests.Services
             var service = QuestionService();
 
             //Act
-            var result = service.EditAsync(new QuestionDto(), out var notFound);
+            var result = service.EditAsync(new QuestionDto(), out _);
 
             //Assert
             Assert.IsInstanceOf<Task>(result);

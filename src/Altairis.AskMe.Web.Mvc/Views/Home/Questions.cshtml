@@ -6,13 +6,13 @@
         <header>
             <h2>Nová otázka</h2>
         </header>
-        <div><textarea asp-for="Input.QuestionText" placeholder="Zadejte text své otázky..."></textarea></div>
+        <div><textarea asp-for="InputQuestion.QuestionText" placeholder="Zadejte text své otázky..."></textarea></div>
         <div>
-            <select asp-for="Input.CategoryId" asp-items="Model.Categories"></select>
+            <select asp-for="InputQuestion.CategoryId" asp-items="Model.Categories"></select>
         </div>
         <div>
-            <input asp-for="Input.DisplayName" placeholder="Jméno (nepovinné)" class="half-width" />
-            <input asp-for="Input.EmailAddress" placeholder="E-mail (nepovinné)" class="half-width" />
+            <input asp-for="InputQuestion.DisplayName" placeholder="Jméno (nepovinné)" class="half-width" />
+            <input asp-for="InputQuestion.EmailAddress" placeholder="E-mail (nepovinné)" class="half-width" />
         </div>
         <div asp-validation-summary="All"></div>
         <footer>

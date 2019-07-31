@@ -3,7 +3,7 @@ using Moq;
 using Olbrasoft.Mapping;
 using Xunit;
 
-namespace Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests
+namespace Olbrasoft.Commanding.Mapping.EntityFrameworkCore
 {
     public class CommandHandlerWithMapperAndDbContextTest
     {
