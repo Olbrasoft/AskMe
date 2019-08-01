@@ -114,19 +114,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Mapping.AutoMappe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft", "src\Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft\Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft.csproj", "{000B08F6-F0D2-45C0-8C4F-4E898CB75C2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests", "test\Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests\Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests.csproj", "{04999ADC-A9A3-4895-9572-C16629D0CE84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests", "test\Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests\Olbrasoft.Commanding.Mapping.EntityFrameworkCore.Tests.csproj", "{04999ADC-A9A3-4895-9572-C16629D0CE84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Querying.Business.Tests", "test\Olbrasoft.Querying.Business.Tests\Olbrasoft.Querying.Business.Tests.csproj", "{9A929F97-599F-4EF0-9980-47F33CFA6886}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Querying.Business.Tests", "test\Olbrasoft.Querying.Business.Tests\Olbrasoft.Querying.Business.Tests.csproj", "{9A929F97-599F-4EF0-9980-47F33CFA6886}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Querying.Business", "src\Olbrasoft.Querying.Business\Olbrasoft.Querying.Business.csproj", "{FA01AE5B-6463-4997-AB23-B8DAD0D1A668}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Querying.Business", "src\Olbrasoft.Querying.Business\Olbrasoft.Querying.Business.csproj", "{FA01AE5B-6463-4997-AB23-B8DAD0D1A668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.Business.Tests", "test\Olbrasoft.Commanding.Business.Tests\Olbrasoft.Commanding.Business.Tests.csproj", "{EEBC6C23-5B6D-4398-80FE-8F421089B546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.Business.Tests", "test\Olbrasoft.Commanding.Business.Tests\Olbrasoft.Commanding.Business.Tests.csproj", "{EEBC6C23-5B6D-4398-80FE-8F421089B546}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.Business", "src\Olbrasoft.Commanding.Business\Olbrasoft.Commanding.Business.csproj", "{B95CF6D3-3E0C-4183-9C76-6BCBBD72561C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Commanding.Business", "src\Olbrasoft.Commanding.Business\Olbrasoft.Commanding.Business.csproj", "{B95CF6D3-3E0C-4183-9C76-6BCBBD72561C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.CommandingAndQuerying.Business.Tests", "test\Olbrasoft.CommandingAndQuerying.Business.Tests\Olbrasoft.CommandingAndQuerying.Business.Tests.csproj", "{155EE160-EFD9-4E93-9640-0E7347D350C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.CommandingAndQuerying.Business.Tests", "test\Olbrasoft.CommandingAndQuerying.Business.Tests\Olbrasoft.CommandingAndQuerying.Business.Tests.csproj", "{155EE160-EFD9-4E93-9640-0E7347D350C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.CommandingAndQuerying.Business", "src\Olbrasoft.CommandingAndQuerying.Business\Olbrasoft.CommandingAndQuerying.Business.csproj", "{A0152BDC-8682-4F39-8C19-DA4DF5EB95D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.CommandingAndQuerying.Business", "src\Olbrasoft.CommandingAndQuerying.Business\Olbrasoft.CommandingAndQuerying.Business.csproj", "{A0152BDC-8682-4F39-8C19-DA4DF5EB95D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.AskMe.Data.NHibernate", "src\Olbrasoft.AskMe.Data.NHibernate\Olbrasoft.AskMe.Data.NHibernate.csproj", "{74140D32-517B-4963-ACBA-4C9AFD8210D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Querying.Mapping.NHibernate.Tests", "test\Olbrasoft.Querying.Mapping.NHibernate.Tests\Olbrasoft.Querying.Mapping.NHibernate.Tests.csproj", "{F943A588-55CC-4A3C-A56B-2B9F819142C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Olbrasoft.Querying.Mapping.NHibernate", "src\Olbrasoft.Querying.Mapping.NHibernate\Olbrasoft.Querying.Mapping.NHibernate.csproj", "{B7645F32-00BA-40BB-95EB-0E2F1B7E56F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.Mapping.NHibernate.Tests", "test\Olbrasoft.Commanding.Mapping.NHibernate.Tests\Olbrasoft.Commanding.Mapping.NHibernate.Tests.csproj", "{E18A3B8E-711F-4458-B14A-D45AC153F615}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Olbrasoft.Commanding.Mapping.NHibernate", "src\Olbrasoft.Commanding.Mapping.NHibernate\Olbrasoft.Commanding.Mapping.NHibernate.csproj", "{7807BF0A-5153-4C6B-BF97-D0AF0F5CB6DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -362,6 +372,26 @@ Global
 		{A0152BDC-8682-4F39-8C19-DA4DF5EB95D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0152BDC-8682-4F39-8C19-DA4DF5EB95D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0152BDC-8682-4F39-8C19-DA4DF5EB95D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74140D32-517B-4963-ACBA-4C9AFD8210D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74140D32-517B-4963-ACBA-4C9AFD8210D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74140D32-517B-4963-ACBA-4C9AFD8210D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74140D32-517B-4963-ACBA-4C9AFD8210D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F943A588-55CC-4A3C-A56B-2B9F819142C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F943A588-55CC-4A3C-A56B-2B9F819142C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F943A588-55CC-4A3C-A56B-2B9F819142C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F943A588-55CC-4A3C-A56B-2B9F819142C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7645F32-00BA-40BB-95EB-0E2F1B7E56F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7645F32-00BA-40BB-95EB-0E2F1B7E56F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7645F32-00BA-40BB-95EB-0E2F1B7E56F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7645F32-00BA-40BB-95EB-0E2F1B7E56F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E18A3B8E-711F-4458-B14A-D45AC153F615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E18A3B8E-711F-4458-B14A-D45AC153F615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E18A3B8E-711F-4458-B14A-D45AC153F615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E18A3B8E-711F-4458-B14A-D45AC153F615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7807BF0A-5153-4C6B-BF97-D0AF0F5CB6DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7807BF0A-5153-4C6B-BF97-D0AF0F5CB6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7807BF0A-5153-4C6B-BF97-D0AF0F5CB6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7807BF0A-5153-4C6B-BF97-D0AF0F5CB6DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -394,6 +424,8 @@ Global
 		{9A929F97-599F-4EF0-9980-47F33CFA6886} = {739DF0CF-2588-4C19-91D5-03370005D20E}
 		{EEBC6C23-5B6D-4398-80FE-8F421089B546} = {739DF0CF-2588-4C19-91D5-03370005D20E}
 		{155EE160-EFD9-4E93-9640-0E7347D350C0} = {739DF0CF-2588-4C19-91D5-03370005D20E}
+		{F943A588-55CC-4A3C-A56B-2B9F819142C4} = {739DF0CF-2588-4C19-91D5-03370005D20E}
+		{E18A3B8E-711F-4458-B14A-D45AC153F615} = {739DF0CF-2588-4C19-91D5-03370005D20E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F57ECE7F-32E7-440B-81CD-6266928C13F6}

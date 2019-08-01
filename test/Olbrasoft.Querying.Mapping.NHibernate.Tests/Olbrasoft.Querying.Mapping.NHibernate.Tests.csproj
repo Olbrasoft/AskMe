@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <RootNamespace>Olbrasoft.Querying.Mapping.NHibernate</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="Moq" Version="4.12.0" />
+    <PackageReference Include="NHibernate" Version="5.2.5" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying.Mapping.NHibernate\Olbrasoft.Querying.Mapping.NHibernate.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying.Mapping\Olbrasoft.Querying.Mapping.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying\Olbrasoft.Querying.csproj" />
+  </ItemGroup>
+
+</Project>

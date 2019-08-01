@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="2.1.2" />
+    <PackageReference Include="NHibernate" Version="5.2.5" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.111" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Commanding.Mapping.NHibernate\Olbrasoft.Commanding.Mapping.NHibernate.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Commanding.Mapping\Olbrasoft.Commanding.Mapping.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.Mapping.NHibernate\Olbrasoft.Querying.Mapping.NHibernate.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.Mapping\Olbrasoft.Querying.Mapping.csproj" />
+  </ItemGroup>
+
+</Project>

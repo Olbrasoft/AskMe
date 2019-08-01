@@ -37,7 +37,7 @@ namespace Olbrasoft.AskMe.Business.Services
             return query.ExecuteAsync(cancellationToken);
         }
 
-        public Task AddAsync(InputQuestionDto question, out int questionId, CancellationToken token = default)
+        public  Task AddAsync(InputQuestionDto question, out int questionId, CancellationToken token = default)
         {
             var command = GetCommand<InputQuestionCommand>();
             command.Data = question;

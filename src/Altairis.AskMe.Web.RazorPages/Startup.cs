@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Altairis.AskMe.Data.Base.Objects;
-using AutoMapper;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,9 +12,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Olbrasoft.AskMe.Business.DependencyInjection.Microsoft;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Olbrasoft.AskMe.Data.NHibernate;
+using Olbrasoft.AskMe.Data.NHibernate.CommandHandlers;
+using Olbrasoft.AskMe.Data.NHibernate.QueryHandlers;
 using Olbrasoft.Commanding.DependencyInjection.Microsoft;
 using Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft;
 using Olbrasoft.Querying.DependencyInjection.Microsoft;
+using Environment = System.Environment;
 
 namespace Altairis.AskMe.Web.RazorPages
 {
@@ -32,7 +37,7 @@ namespace Altairis.AskMe.Web.RazorPages
                 .AddJsonFile("config.json", optional: false)
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            this._config = builder.Build();
+            _config = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -40,15 +45,14 @@ namespace Altairis.AskMe.Web.RazorPages
             // Configure DB context
             services.AddDbContext<AskDbContext>(options =>
             {
-                options.UseSqlite(this._config.GetConnectionString("AskDB"));
+                options.UseSqlServer(this._config.GetConnectionString("AskDB"));
             });
-            
             
             services.AddMapping(typeof(Data.Transfer.Objects.CategoryListItemDto).Assembly);
 
-            services.AddCommanding(typeof(Data.Commands.InputQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+            services.AddCommanding(typeof(Data.Commands.InputQuestionCommand).Assembly, typeof(InputQuestionCommandHandler).Assembly);
 
-            services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
+            services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(PagedAnsweredQuestionsQueryHandler).Assembly);
 
             services.AddBusiness();
 
@@ -61,16 +65,24 @@ namespace Altairis.AskMe.Web.RazorPages
 
             // Configure identity and authentication
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
-            {
-                options.Password.RequiredLength = 12;
-                options.Password.RequiredUniqueChars = 4;
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-            })
+                {
+                    options.Password.RequiredLength = 12;
+                    options.Password.RequiredUniqueChars = 4;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                })
                 .AddEntityFrameworkStores<AskDbContext>()
                 .AddDefaultTokenProviders();
+
+            var cfg = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(_config.GetConnectionString("AskDB")))
+                .Mappings(x => x.FluentMappings.AddFromAssemblyOf<PagedAnsweredQuestionsQueryHandler>()
+                    .Conventions.Add(FluentNHibernate.Conventions.Helpers.DefaultLazy.Never()));
+            
+            services.AddSingleton(provider => cfg.BuildSessionFactory());
+
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Account/Login";
@@ -78,9 +90,6 @@ namespace Altairis.AskMe.Web.RazorPages
                 options.SlidingExpiration = true;
                 options.ExpireTimeSpan = TimeSpan.FromDays(30);
             });
-
-            // Load configuration
-            services.Configure<AppConfiguration>(this._config);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AskDbContext context, UserManager<ApplicationUser> userManager)

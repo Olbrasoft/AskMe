@@ -1,6 +1,6 @@
 {
   "ConnectionStrings": {
-    "AskDb": "Data Source=App_Data/ask.db"
-  },
-  "PageSize": 5
+    "AskDb": "Server=localhost; Database=AskMe; Trusted_Connection=True; MultipleActiveResultSets=true"
+
+  }
 }

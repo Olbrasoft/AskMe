@@ -7,27 +7,27 @@ namespace Altairis.AskMe.Data.Base.Objects
     public class Question
     {
         [Key]
-        public int Id { get; set; }
+        public  int Id { get; set; }
 
-        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public  DateTime DateCreated { get; set; } = DateTime.Now;
 
-        public DateTime? DateAnswered { get; set; }
+        public  DateTime? DateAnswered { get; set; }
 
         [Required, MaxLength(500)]
-        public string QuestionText { get; set; }
+        public  string QuestionText { get; set; }
 
         [MaxLength(100)]
-        public string DisplayName { get; set; }
+        public  string DisplayName { get; set; }
 
         [MaxLength(100), DataType(DataType.EmailAddress)]
-        public string EmailAddress { get; set; }
+        public  string EmailAddress { get; set; }
 
-        public string AnswerText { get; set; }
+        public  string AnswerText { get; set; }
 
         [ForeignKey(nameof(Category))]
-        public int CategoryId { get; set; }
+        public  int CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
-        public Category Category { get; set; }
+        public  Category Category { get; set; }
     }
 }

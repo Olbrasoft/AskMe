@@ -99,7 +99,7 @@ namespace Altairis.AskMe.Web.Mvc
             }
 
             // Migrate database to last version
-            context.Database.Migrate();
+            //context.Database.Migrate();
 
             // Seed initial data if in development environment
             if (env.IsDevelopment())
