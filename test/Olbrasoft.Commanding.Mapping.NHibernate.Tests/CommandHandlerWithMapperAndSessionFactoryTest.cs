@@ -1,7 +1,6 @@
 using Moq;
 using NHibernate;
 using Olbrasoft.Mapping;
-using Olbrasoft.Querying.Mapping;
 using Xunit;
 
 namespace Olbrasoft.Commanding.Mapping.NHibernate
@@ -53,7 +52,7 @@ namespace Olbrasoft.Commanding.Mapping.NHibernate
         {
             var handler = AwesomeCommandHandlerWithMapperAndSessionFactory();
 
-            var session = handler.Session;
+            handler.CallSession();
 
             _factoryMock.Verify(p=>p.OpenSession(),Times.Once);
         }

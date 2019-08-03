@@ -39,7 +39,7 @@ namespace Olbrasoft.AskMe.Business.Services
 
         public  Task AddAsync(InputQuestionDto question, out int questionId, CancellationToken token = default)
         {
-            var command = GetCommand<InputQuestionCommand>();
+            var command = GetCommand<InsertQuestionCommand>();
             command.Data = question;
 
             var result = command.ExecuteAsync(token);

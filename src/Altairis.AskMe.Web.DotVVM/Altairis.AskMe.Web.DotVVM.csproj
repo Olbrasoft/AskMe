@@ -10,10 +10,18 @@
     <PackageReference Include="Automapper" Version="8.1.1" />
     <PackageReference Include="DotVVM.AspNetCore" Version="2.3.0" />
     <PackageReference Include="Microsoft.SyndicationFeed.ReaderWriter" Version="1.0.2" />
+    <PackageReference Include="X.PagedList" Version="7.6.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Olbrasoft.AskMe.Business.DependencyInjection.Microsoft\Olbrasoft.AskMe.Business.DependencyInjection.Microsoft.csproj" />
+    <ProjectReference Include="..\Olbrasoft.AskMe.Data.Dapper\Olbrasoft.AskMe.Data.Dapper.csproj" />
     <ProjectReference Include="..\Olbrasoft.AskMe.Data.EntityFrameworkCore\Olbrasoft.AskMe.Data.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Commanding.DependencyInjection.Microsoft\Olbrasoft.Commanding.DependencyInjection.Microsoft.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft\Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Paging.X.PagedList\Olbrasoft.Paging.X.PagedList.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.DependencyInjection.Microsoft\Olbrasoft.Querying.DependencyInjection.Microsoft.csproj" />
   </ItemGroup>
 
 </Project>

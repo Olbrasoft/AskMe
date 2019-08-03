@@ -7,13 +7,13 @@ using Olbrasoft.Mapping;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.CommandHandlers
 {
-    public class InputQuestionCommandHandler : CommandHandlerWithMapperAndDbContext<InputQuestionCommand, AskDbContext>
+    public class InsertQuestionCommandHandler : CommandHandlerWithMapperAndDbContext<InsertQuestionCommand, AskDbContext>
     {
-        public InputQuestionCommandHandler(IMapper mapper, AskDbContext context) : base(mapper, context)
+        public InsertQuestionCommandHandler(IMapper mapper, AskDbContext context) : base(mapper, context)
         {
         }
 
-        public override async Task HandleAsync(InputQuestionCommand command, CancellationToken token)
+        public override async Task HandleAsync(InsertQuestionCommand command, CancellationToken token)
         {
             var question = MapTo<Question>(command.Data);
 

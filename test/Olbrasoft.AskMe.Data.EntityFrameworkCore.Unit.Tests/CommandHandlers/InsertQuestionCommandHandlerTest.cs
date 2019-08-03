@@ -10,14 +10,14 @@ using Olbrasoft.Mapping;
 
 namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
 {
-    public class InputQuestionCommandHandlerTest
+    public class InsertQuestionCommandHandlerTest
     {
 
         [Test]
         public void Instance_Is_AskCommandHandler_Of_InsertQuestionCommand()
         {
             //Arrange
-            var type = typeof(CommandHandlerWithMapperAndDbContext<InputQuestionCommand,AskDbContext>);
+            var type = typeof(CommandHandlerWithMapperAndDbContext<InsertQuestionCommand,AskDbContext>);
 
             //Act
             var handler = InputQuestionCommandHandler();
@@ -33,7 +33,7 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
             var handler = InputQuestionCommandHandler();
 
             var dispatcherMock = new Mock<ICommandDispatcher>();
-            var command = new InputQuestionCommand(dispatcherMock.Object);
+            var command = new InsertQuestionCommand(dispatcherMock.Object);
 
             //Act
             var result = handler.HandleAsync(command);
@@ -42,12 +42,12 @@ namespace Olbrasoft.AskMe.Data.EntityFrameworkCore.Unit.Tests.CommandHandlers
             Assert.IsInstanceOf<Task>(result);
         }
 
-        private static InputQuestionCommandHandler InputQuestionCommandHandler()
+        private static InsertQuestionCommandHandler InputQuestionCommandHandler()
         {
             var contextMock = new Mock<AskDbContext>();
             var mapperMock = new Mock<IMapper>();
 
-            var handler = new InputQuestionCommandHandler(mapperMock.Object, contextMock.Object);
+            var handler = new InsertQuestionCommandHandler(mapperMock.Object, contextMock.Object);
             return handler;
         }
     }

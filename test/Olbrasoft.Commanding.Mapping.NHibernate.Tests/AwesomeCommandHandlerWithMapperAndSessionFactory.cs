@@ -7,7 +7,7 @@ namespace Olbrasoft.Commanding.Mapping.NHibernate
 {
     public class AwesomeCommandHandlerWithMapperAndSessionFactory : CommandHandlerWithMapperAndSessionFactory<Command>
     {
-        public new ISession Session => base.Session;
+        public ISession CallSession() => Session;
 
         public AwesomeCommandHandlerWithMapperAndSessionFactory(IMapper mapper, ISessionFactory factory) : base(mapper, factory)
         {

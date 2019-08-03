@@ -50,7 +50,7 @@ namespace Altairis.AskMe.Web.RazorPages
             
             services.AddMapping(typeof(Data.Transfer.Objects.CategoryListItemDto).Assembly);
 
-            services.AddCommanding(typeof(Data.Commands.InputQuestionCommand).Assembly, typeof(InputQuestionCommandHandler).Assembly);
+            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(InsertQuestionCommandHandler).Assembly);
 
             services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(PagedAnsweredQuestionsQueryHandler).Assembly);
 

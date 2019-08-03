@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <RootNamespace>Olbrasoft.AskMe.Data.Dapper</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="Moq" Version="4.12.0" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.AskMe.Data.Dapper\Olbrasoft.AskMe.Data.Dapper.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Paging\Olbrasoft.Paging.csproj" />
+    <ProjectReference Include="..\..\src\Olbrasoft.Querying.Mapping.Data\Olbrasoft.Querying.Mapping.Data.csproj" />
+  </ItemGroup>
+
+</Project>

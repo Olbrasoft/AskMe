@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using Altairis.AskMe.Data.Base.Objects;
 using AutoMapper;
@@ -12,10 +14,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Olbrasoft.AskMe.Business.DependencyInjection.Microsoft;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Olbrasoft.AskMe.Data.EntityFrameworkCore.QueryHandlers;
 using Olbrasoft.Commanding.DependencyInjection.Microsoft;
+using Olbrasoft.Data;
 using Olbrasoft.Mapping;
 using Olbrasoft.Mapping.AutoMapper;
+using Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft;
 using Olbrasoft.Querying.DependencyInjection.Microsoft;
+using Olbrasoft.Querying.Mapping.Data;
 using IMapper = AutoMapper.IMapper;
 
 namespace Altairis.AskMe.Web.Mvc
@@ -45,12 +51,11 @@ namespace Altairis.AskMe.Web.Mvc
                 options.UseSqlite(_config.GetConnectionString("AskDB"));
             });
 
-            services.AddAutoMapper(typeof(Data.Transfer.Objects.QuestionDto).Assembly);
 
-            services.AddSingleton<IProjector, Projector>();
-            services.AddSingleton<Olbrasoft.Mapping.IMapper, Olbrasoft.Mapping.AutoMapper.Mapper>();
-
-            services.AddCommanding(typeof(Data.Commands.InputQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+          
+            services.AddMapping(typeof(Data.Transfer.Objects.QuestionDto).Assembly);
+            
+            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
 
             services.AddQuerying(typeof(Data.Queries.CategoriesListItemsQuery).Assembly, typeof(AskQueryHandler<,,>).Assembly);
 

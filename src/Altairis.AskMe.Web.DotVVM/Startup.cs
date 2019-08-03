@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using Altairis.AskMe.Data.Base.Objects;
 using Altairis.AskMe.Web.DotVVM.Presenters;
@@ -7,14 +9,25 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Olbrasoft.AskMe.Business.DependencyInjection.Microsoft;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Olbrasoft.Commanding.DependencyInjection.Microsoft;
+using Olbrasoft.Data;
+using Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft;
+using Olbrasoft.Querying.DependencyInjection.Microsoft;
 
 namespace Altairis.AskMe.Web.DotVVM {
-    public class Startup {
+    public class Startup
+    {
+        private const string ConnectionStringName = "AskMicrosoftSqlServer";
+
         private readonly IConfigurationRoot _config;
+
 
         public Startup(IHostingEnvironment env) {
             // Set CWD to content root (needed when AspNetCoreHostingModel=InProcess)
@@ -26,14 +39,35 @@ namespace Altairis.AskMe.Web.DotVVM {
                 .AddJsonFile("config.json", optional: false)
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-            this._config = builder.Build();
+            _config = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services) {
             // Configure DB context
-            services.AddDbContext<AskDbContext>(options => {
-                options.UseSqlite(this._config.GetConnectionString("AskDB"));
+            services.AddDbContext<AskDbContext>(options =>
+            {
+                options.UseSqlServer(_config.GetConnectionString(ConnectionStringName));
+                // options.UseSqlite(_config.GetConnectionString(ConnectionStringName));
             });
+
+            //var s = new System.Data.SqlClient.SqlConnection();
+
+
+           services.AddSingleton<Func<IDbConnection>>(x => () => new SqlConnection(_config.GetConnectionString(ConnectionStringName)));
+          
+
+            services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
+
+            services.AddMapping(typeof(Data.Transfer.Objects.CategoryListItemDto).Assembly);
+            
+            services.AddCommanding(typeof(Data.Commands.InsertQuestionCommand).Assembly, typeof(AskCommandHandler<>).Assembly);
+
+            services.AddQuerying(
+                typeof(Data.Queries.CategoriesListItemsQuery).Assembly, 
+                typeof(Olbrasoft.AskMe.Data.Dapper.QueryHandlers.PagedAnsweredQuestionsQueryHandler).Assembly
+                );
+
+            services.AddBusiness();
 
             // Configure identity and authentication
             services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
@@ -74,12 +108,12 @@ namespace Altairis.AskMe.Web.DotVVM {
             }
 
             // Migrate database to last version
-            context.Database.Migrate();
+           // context.Database.Migrate();
 
             // Seed initial data if in development environment
             if (env.IsDevelopment()) {
                 // CreateQuery categories
-                context.Seed();
+              //  context.Seed();
 
                 // CreateQuery default user
                 if (!userManager.Users.Any()) {

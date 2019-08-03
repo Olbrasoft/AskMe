@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Altairis.AskMe.Data\Altairis.AskMe.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Paging\Olbrasoft.Paging.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.Data\Olbrasoft.Querying.Data.csproj" />
+  </ItemGroup>
+
+</Project>

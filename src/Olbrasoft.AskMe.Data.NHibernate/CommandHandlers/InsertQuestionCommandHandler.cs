@@ -8,13 +8,13 @@ using Olbrasoft.Mapping;
 
 namespace Olbrasoft.AskMe.Data.NHibernate.CommandHandlers
 {
-    public class InputQuestionCommandHandler : CommandHandlerWithMapperAndSessionFactory<InputQuestionCommand>
+    public class InsertQuestionCommandHandler : CommandHandlerWithMapperAndSessionFactory<InsertQuestionCommand>
     {
-        public InputQuestionCommandHandler(IMapper mapper, ISessionFactory factory) : base(mapper, factory)
+        public InsertQuestionCommandHandler(IMapper mapper, ISessionFactory factory) : base(mapper, factory)
         {
         }
 
-        public override async Task HandleAsync(InputQuestionCommand command, CancellationToken token)
+        public override async Task HandleAsync(InsertQuestionCommand command, CancellationToken token)
         {
             var question = MapTo<Question>(command.Data);
 

@@ -26,10 +26,13 @@
     <ProjectReference Include="..\Olbrasoft.AskMe.Data.EntityFrameworkCore\Olbrasoft.AskMe.Data.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Olbrasoft.Commanding.DependencyInjection.Castle\Olbrasoft.Commanding.DependencyInjection.Castle.csproj" />
     <ProjectReference Include="..\Olbrasoft.Commanding.DependencyInjection.Microsoft\Olbrasoft.Commanding.DependencyInjection.Microsoft.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Data\Olbrasoft.Data.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft\Olbrasoft.Mapping.AutoMapper.DependencyInjection.Microsoft.csproj" />
     <ProjectReference Include="..\Olbrasoft.Mapping.AutoMapper\Olbrasoft.Mapping.AutoMapper.csproj" />
     <ProjectReference Include="..\Olbrasoft.Paging.X.PagedList\Olbrasoft.Paging.X.PagedList.csproj" />
     <ProjectReference Include="..\Olbrasoft.Querying.DependencyInjection.Castle\Olbrasoft.Querying.DependencyInjection.Castle.csproj" />
     <ProjectReference Include="..\Olbrasoft.Querying.DependencyInjection.Microsoft\Olbrasoft.Querying.DependencyInjection.Microsoft.csproj" />
+    <ProjectReference Include="..\Olbrasoft.Querying.Mapping.Data\Olbrasoft.Querying.Mapping.Data.csproj" />
   </ItemGroup>
 
 </Project>

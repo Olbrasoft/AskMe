@@ -1,25 +1,42 @@
-using System.Linq;
+using System;
+using System.Threading.Tasks;
 using Altairis.AskMe.Data.Transfer.Objects;
-using AutoMapper.QueryableExtensions;
+using DotVVM.Framework.Controls;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Options;
+using Olbrasoft.AskMe.Business;
 using Olbrasoft.AskMe.Data.EntityFrameworkCore;
+using Olbrasoft.Paging;
 
-namespace Altairis.AskMe.Web.DotVVM.ViewModels {
-    public class IndexViewModel : PagedViewModel<QuestionDto> {
-        private readonly AskDbContext dbContext;
-
-        public IndexViewModel(IHostingEnvironment env, IOptionsSnapshot<AppConfiguration> config, AskDbContext dbContext) : base(env, config) {
-            this.dbContext = dbContext;
-        }
+namespace Altairis.AskMe.Web.DotVVM.ViewModels
+{
+    public class IndexViewModel : MasterPageViewModel
+    {
+        private readonly IQuestions _questions;
 
         public override string PageTitle => "AskMe";
 
-        protected override IQueryable<QuestionDto> DataSource
-            => this.dbContext.Questions
-                .Where(x => x.DateAnswered.HasValue)
-                .OrderByDescending(x => x.DateAnswered)
-                .ProjectTo<QuestionDto>();
+        public GridViewDataSet<QuestionDto> Data { get; set; } = new GridViewDataSet<QuestionDto>();
+
+        public override async Task PreRender()
+        {
+            await base.PreRender();
+
+            var pageNumber = Convert.ToInt32(Context.Parameters["pageNumber"]);
+
+            var pageInfo = new PageInfo(10, pageNumber);
+         
+            Data.PagingOptions.PageIndex = pageNumber == 0 ? 0 : pageNumber - 1;
+
+            var questions = await _questions.GetAnsweredAsync(pageInfo);
+            Data.PagingOptions.TotalItemsCount = questions.TotalCount;
+            Data.Items = questions.Result;
+        }
+
+        public IndexViewModel(IHostingEnvironment env, AskDbContext dbContext, IQuestions questions) : base(env)
+        {
+            Data.PagingOptions.PageSize = 10;
+
+            _questions = questions;
+        }
     }
 }
-

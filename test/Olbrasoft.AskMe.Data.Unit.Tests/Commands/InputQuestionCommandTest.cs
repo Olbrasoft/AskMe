@@ -22,11 +22,11 @@ namespace Olbrasoft.AskMe.Data.Unit.Tests.Commands
             Assert.IsInstanceOf(type, command);
         }
 
-        private static InputQuestionCommand InsertQuestionCommand()
+        private static InsertQuestionCommand InsertQuestionCommand()
         {
             var dispatcherMock = new Mock<ICommandDispatcher>();
 
-            var command = new InputQuestionCommand(dispatcherMock.Object);
+            var command = new InsertQuestionCommand(dispatcherMock.Object);
             return command;
         }
     }

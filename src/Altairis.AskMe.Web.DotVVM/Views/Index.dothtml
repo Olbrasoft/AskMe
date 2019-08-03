@@ -2,7 +2,6 @@
 @masterPage Views/MasterPage.dotmaster
 
 <dot:Content ContentPlaceHolderID="MainContent">
-
     <dot:Repeater DataSource="{value: Data}">
         <ItemTemplate>
             <article class="answer" ID="{value: Id}">

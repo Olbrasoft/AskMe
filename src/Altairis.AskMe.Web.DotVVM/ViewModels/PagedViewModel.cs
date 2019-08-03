@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 
 namespace Altairis.AskMe.Web.DotVVM.ViewModels {
     public abstract class PagedViewModel<TItem> : MasterPageViewModel {
-        public PagedViewModel(IHostingEnvironment env, IOptionsSnapshot<AppConfiguration> config) : base(env) {
+        protected PagedViewModel(IHostingEnvironment env, IOptionsSnapshot<AppConfiguration> config) : base(env) {
             this.Data.PagingOptions.PageSize = config.Value.PageSize;
         }
 
@@ -21,6 +21,8 @@ namespace Altairis.AskMe.Web.DotVVM.ViewModels {
             var pageNumber = Convert.ToInt32(this.Context.Parameters["pageNumber"]);
             this.Data.PagingOptions.PageIndex = pageNumber == 0 ? 0 : pageNumber - 1;
             this.Data.LoadFromQueryable(this.DataSource);
+            
+
         }
 
     }
